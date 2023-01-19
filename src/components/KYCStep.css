@@ -1,0 +1,82 @@
+
+/*
+.onboarding-flow-us {
+    color: #160245;
+    text-align: center;
+    min-height: 90vh;
+    background-color: rgb(255, 255, 255);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 28px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: Object Sans, Arial;
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 30px;
+    display: flex;
+}*/
+
+/* .header-light {
+    width: 900px;
+    height: 56px;
+    object-fit: cover;
+    margin-bottom: 15px;
+} */
+
+.input-box-light {
+    width: 65%;
+    background-color: #fff;
+    border: 1px solid #c7c7cc;
+    border-radius: 8px;
+    flex-direction: column;
+    /* flex-basis: 50%; IS IT NEEDED */
+    /* WELCOME SCREEN IS THE ONLY ONE THAT IS CENTERED */
+    /* justify-content: flex-start; THIS CHANGE IS SO THE VIEW STARTS AT THE TOP ALWAYS - justify-content: center; */
+    justify-content: center; 
+    align-items: center;
+    margin-bottom: 12px;
+    margin-left: 2px;
+    padding-left: 1px;
+    display: flex;
+}
+
+.step-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* padding-left: 10%;
+    padding-right: 10%; */
+    justify-content: center;
+    text-align: left;
+
+    width: 80%; /* added so single option view expands */
+}
+
+.button-light-mode-instance-1 {
+    display: inline-block;
+    /* flex-basis: 20%; */
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.kyc-title {
+    color: #060D12;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    letter-spacing: -0.003em;
+}
+
+.kyc-subtitle {
+    color: #76767E;
+    font-weight: 400;
+    font-size: 2vh;
+    line-height: 24px;
+    margin-top: -12px;
+    margin-bottom: 16px;
+    display: flex;
+}

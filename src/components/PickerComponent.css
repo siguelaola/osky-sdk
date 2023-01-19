@@ -1,0 +1,44 @@
+.picker {
+  position: relative;
+  width: 70%;
+  /* flex-basis: 14%; */
+  /* min-height: 28px; */
+  padding: 1vh;;
+  margin-bottom: 22px;
+  border: 1px solid #c7c7cc;
+  border-radius: 8px;
+
+  font-family: 'Object Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2vh;
+  flex: 1;
+  color: #060D12;
+}
+
+.picker__selected {
+  cursor: pointer;
+}
+
+.picker__options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  max-height: 200px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1;
+  margin-top: 1px;
+}
+
+.picker__option {
+  cursor: pointer;
+  padding: 8px;
+}
+
+.picker__option:hover {
+  background-color: #eee;
+}

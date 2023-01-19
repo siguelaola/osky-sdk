@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-logo {
@@ -24,6 +29,7 @@
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
 }
@@ -36,3 +42,28 @@
     transform: rotate(360deg);
   }
 }
+
+
+html, body, #app, #app>div, :root {
+    height: 100%
+  }
+
+  body > #root > div {
+    height: 100vh;
+  }
+/* 
+  [data-reactroot] 
+        {
+            height: 100% !important; 
+            position: absolute !important!important; 
+            width: 100% !important;
+        }
+
+
+        14
+
+
+        #app {
+          height: 100%;
+          min-height: 100vh;
+        } */

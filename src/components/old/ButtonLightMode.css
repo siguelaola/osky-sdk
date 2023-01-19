@@ -1,0 +1,16 @@
+.button-light-mode {
+  background-color: #160245;
+  border: none;
+  border-radius: 28px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1px;
+  display: flex;
+}
+
+.type-button-label-big-instance-1 {
+  height: 45%;
+  flex-basis: 60%;
+  margin-bottom: 1px;
+}

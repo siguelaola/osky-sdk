@@ -1,0 +1,72 @@
+.ssn-input {
+  display: flex;
+  flex-direction: column;
+
+  font-family: Object Sans, Arial;
+  font-size: 2vh;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.ssn-input__title {
+  margin: 0 0 8px;
+  color: #060d12;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  display: flex;
+  font-weight: 700;
+  /* margin-bottom: 1px; */
+}
+
+.ssn-input__container {
+  display: flex;
+  align-items: center;
+  margin: 0 0 8px;
+  padding: 8px;
+  /* background-color: #f9f9f9; */
+
+  border: 1px solid #C7C7CC;
+  border-radius: 8px;
+}
+
+.ssn-input__field {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+.ssn-input__field:focus {
+    outline: 0;
+    border: none;
+  }
+
+.auxiliar-message {
+  font-size: 2vh;
+}
+
+.ssn-input__lock {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+}
+
+.ssn-input__error {
+  color: red !important;
+
+  /* font-family: Object Sans, Arial;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 30px; */
+}
+
+.invalid {
+  color: red !important;
+}
+
+.invalid-border {
+    border: 1px solid red;
+}
