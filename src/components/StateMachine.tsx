@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StepConfiguration, ScreenComponent, StepMap } from "./Models";
+import { StepConfiguration, ScreenComponent, StepMap } from "./Interfaces";
 import Onboarding from "./Onboarding";
 import UserDetails from "./UserDetails";
 import WelcomeScreen from "./WelcomeScreen";
@@ -120,14 +120,23 @@ interface IOnboardingData {
   levelOfEducation: string;
 }
 
+
+interface IStepFlow {
+    nextStep?: StepConfiguration
+    onError?: StepConfiguration
+    prevStep?: StepConfiguration
+    condition?: string
+}
+
 export default class StateMachine extends React.Component<
-{ configuration: StepConfiguration[] },
+{ flow: Map<StepConfiguration, IStepFlow> },
 // { configuration: StepConfiguration[] },
   IOnboardingData
 > {
   state: IOnboardingData = {
     step: 0,
-    currentNode: this.props.configuration[0],
+    // currentNode: {title: "", items: [], screen: ScreenComponent.welcomeScreen },
+    currentNode: this.props.flow.keys().next().value,
     email: "",
     username: "",
     password: "",
@@ -142,30 +151,45 @@ export default class StateMachine extends React.Component<
   //     this.setState({ step: step - 1 });
   //   };
 
-//   componentDidMount() {
-//     // this.setState((prevState) => {
-//     //     return {
-//     //       ...prevState,
-//     //       ["currentNode"]: this.props.configuration,
-//     //     };
-//     //   });
-//     this.setState({ currentNode }, this.props.configuration[0] )
-//   }
+  onError = () => {
+    console.log("on Error");
+    
+    const currentFlow = this.props.flow.get(this.state.currentNode)
+
+    if (currentFlow?.onError) {
+        this.setState({ 
+            currentNode: currentFlow.onError
+        });
+    }
+  }
 
   nextStep = () => {
-    console.log("next");
-    const step = this.state.step;
+    const currentFlow = this.props.flow.get(this.state.currentNode)
 
-    if (this.state.currentNode.nextStep) {
-        this.setState({ 
-            step: step + 1,
-            currentNode: this.state.currentNode.nextStep
-        });
+    let canContinue = true
+
+    if (currentFlow?.condition) {
+        console.log(currentFlow.condition)
+        canContinue = eval(currentFlow?.condition)
+        // canContinue = Function("return " + currentFlow?.condition)();
+    }
+
+    if (canContinue) {
+        if (currentFlow?.nextStep) {
+            this.setState({ 
+                currentNode: currentFlow.nextStep
+            });
+        }
+    } else {
+        this.onError();
     }
   };
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   handleChange = (key: string, value: string) => {
-    //   handleChange = (input: string, e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState((prevState) => {
       return {
         ...prevState,
@@ -174,8 +198,7 @@ export default class StateMachine extends React.Component<
     });
   };
 
-  drawComponent(step: number, values: IOnboardingData) {
-    // const configuration = this.props.configuration[step];
+  drawComponent(values: IOnboardingData) {
     const configuration = this.state.currentNode
     const DynamicComponent = StepMap[configuration.screen];
     const props = {
@@ -185,13 +208,12 @@ export default class StateMachine extends React.Component<
       handleChange: this.handleChange,
     };
 
-    return <DynamicComponent {...props} />;
+    return <DynamicComponent key={this.state.currentNode.title} {...props} />;
   }
 
   render() {
-    // const { step } = this.state;
     const values = {} as IOnboardingData;
 
-    return this.drawComponent(this.state.step, values);
+    return this.drawComponent(values);
   }
 }

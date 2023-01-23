@@ -1,6 +1,6 @@
 import * as React from "react";
 import KYCFlowButton from "./KYCFlowButton";
-import { StepConfiguration } from "./Models";
+import { StepConfiguration } from "./Interfaces";
 import "./WelcomeScreen.css";
 
 class WelcomeScreen extends React.Component<{configuration: StepConfiguration, nextStep: () => void }> {

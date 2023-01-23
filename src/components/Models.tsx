@@ -1,93 +1,75 @@
-import { Config } from "@testing-library/react";
-import React, { Component } from "react";
+import { StepConfiguration, ComponentsType, ConfigurationOptions, ScreenComponent, IStepFlow } from "./Interfaces";
 
-import CheckboxInput from "./CheckboxInput";
-import DatePicker from "./DatePicker";
-import InputValidationField from "./InputValidationField";
-import KYCFlowButton from "./KYCFlowButton";
-import InputBoxLight from "./old/InputBoxLight";
-import LabelField from "./old/LabelField";
-import PickerComponent from "./PickerComponent";
-import SingleChoiceOption from "./SingleChoiceOption";
-import UserDetails from "./UserDetails";
-import WelcomeScreen from "./WelcomeScreen";
-
-
-
-enum ComponentsType {
-    Textfield,
-    Input,
-    Button,
-    SingleChoiceOption,
-    Checkbox,
-    Picker,
-    InputValidation,
-    DatePicker
-}
-
-// enum AA {
-//     Test: WelcomeScreen
+// enum ComponentsType {
+//     Textfield,
+//     Input,
+//     Button,
+//     SingleChoiceOption,
+//     Checkbox,
+//     Picker,
+//     InputValidation,
+//     DatePicker
 // }
 
-enum ScreenComponent {
-    welcomeScreen = 'welcomeScreen', 
-    userDetails = 'userDetails'
-}
-
-// const StepMap: { [key in ScreenComponent]? : JSX.Element } = {
-//     [ScreenComponent.welcomeScreen]: WelcomeScreen
+// enum ScreenComponent {
+//     welcomeScreen = 'welcomeScreen', 
+//     userDetails = 'userDetails'
 // }
 
-// const StepMap: Record<keyof typeof ScreenComponent, any> = {
-//     WelcomeScreen: WelcomeScreen,
-//     UserDetails: UserDetails
+// // const StepMap: { [key in ScreenComponent]? : JSX.Element } = {
+// //     [ScreenComponent.welcomeScreen]: WelcomeScreen
+// // }
+
+// // const StepMap: Record<keyof typeof ScreenComponent, any> = {
+// //     WelcomeScreen: WelcomeScreen,
+// //     UserDetails: UserDetails
+// // }
+
+// const StepMap: Record<ScreenComponent, any> = {
+//     welcomeScreen: WelcomeScreen,
+//     userDetails: UserDetails
 // }
 
-const StepMap: Record<ScreenComponent, any> = {
-    welcomeScreen: WelcomeScreen,
-    userDetails: UserDetails
-}
 
 
+// // const StepMap<ScreenComponent: React.Component> = {
+// //     [ScreenComponent.welcomeScreen]: WelcomeScreen,
+// //     [ScreenComponent.UserDetails]: UserDetails
+// //     // Textfield: LabelField, 
+// //     // Input: InputBoxLight,
+// //     // Button: KYCFlowButton,
+// //     // SingleChoiceOption: SingleChoiceOption,
+// //     // Checkbox: CheckboxInput,
+// //     // Picker: PickerComponent,
+// //     // InputValidation: InputValidationField,
+// //     // DatePicker: DatePicker
+// // }
 
-// const StepMap<ScreenComponent: React.Component> = {
-//     [ScreenComponent.welcomeScreen]: WelcomeScreen,
-//     [ScreenComponent.UserDetails]: UserDetails
-//     // Textfield: LabelField, 
-//     // Input: InputBoxLight,
-//     // Button: KYCFlowButton,
-//     // SingleChoiceOption: SingleChoiceOption,
-//     // Checkbox: CheckboxInput,
-//     // Picker: PickerComponent,
-//     // InputValidation: InputValidationField,
-//     // DatePicker: DatePicker
+// enum ConfigurationOptions {
+//     Options,
+//     Position,
+//     Validator,
+//     IsSecure,
+//     ErrorMessage,
+//     HelperMessage
 // }
 
-enum ConfigurationOptions {
-    Options,
-    Position,
-    Validator,
-    IsSecure,
-    ErrorMessage,
-    HelperMessage
-}
+// interface ComponentConfig {
+//     id: string;
+//     name: string;
+//     type: ComponentsType;
+//     configuration?: Map<ConfigurationOptions, any>;
+// }
 
-interface ComponentConfig {
-    id: string;
-    name: string;
-    type: ComponentsType;
-    configuration?: Map<ConfigurationOptions, any>;
-}
-
-interface StepConfiguration {
-    title: string;
-    subtitle?: string;
-    items: ComponentConfig[];
-    button?: { button: string; className?: string };
-    screen: ScreenComponent
-    nextStep?: StepConfiguration
-    onErrorStep?: StepConfiguration
-}
+// interface StepConfiguration {
+//     title: string;
+//     subtitle?: string;
+//     items: ComponentConfig[];
+//     button?: { button: string; className?: string };
+//     screen: ScreenComponent
+//     nextStep?: StepConfiguration
+//     onErrorStep?: StepConfiguration
+// }
 
 
 
@@ -267,13 +249,6 @@ const birthConfiguration: StepConfiguration = {
 
 
 
-interface IStepFlow {
-    nextStep?: StepConfiguration
-    onError?: StepConfiguration
-    prevStep?: StepConfiguration
-}
-
-
 let flow = new Map<StepConfiguration, IStepFlow>();
 flow.set(welcomeConfiguration, {
     nextStep: userDetailsConfiguration,
@@ -281,30 +256,27 @@ flow.set(welcomeConfiguration, {
     prevStep: undefined
 })
 
-flow.set(welcomeConfiguration, {
-        nextStep: userDetailsConfiguration,
+flow.set(userDetailsConfiguration, {
+        nextStep: addressConfiguration,
         onError: noAvailableConfiguration,
-        prevStep: undefined
+        prevStep: undefined,
+        condition: "this.state.firstName.length > 0"
     })
 
-flow.set(welcomeConfiguration, {
-        nextStep: userDetailsConfiguration,
-        onError: noAvailableConfiguration,
-        prevStep: undefined
-    })
+// flow.set(welcomeConfiguration, {
+//         nextStep: userDetailsConfiguration,
+//         onError: noAvailableConfiguration,
+//         prevStep: undefined
+//     })
 
-flow.set(welcomeConfiguration, {
-        nextStep: userDetailsConfiguration,
-        onError: noAvailableConfiguration,
-        prevStep: undefined
-    })
+// flow.set(welcomeConfiguration, {
+//         nextStep: userDetailsConfiguration,
+//         onError: noAvailableConfiguration,
+//         prevStep: undefined
+//     })
 
 
 export {
-    StepMap,
-    ScreenComponent,
-    ComponentsType,
-    ConfigurationOptions,
     welcomeConfiguration,
     userDetailsConfiguration,
     addressConfiguration,
@@ -317,9 +289,6 @@ export {
     ssnInputConfiguration,
     flow
 };
-
-export type { StepConfiguration };
-export type { ComponentConfig };
 
 
 

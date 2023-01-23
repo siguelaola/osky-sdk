@@ -4,17 +4,21 @@ import InputBoxLight from "./old/InputBoxLight";
 import KYCFlowButton from "./KYCFlowButton";
 import SingleChoiceOption from "./SingleChoiceOption";
 import CheckboxInput from "./CheckboxInput";
+
 import {
   ComponentConfig,
   ComponentsType,
   StepConfiguration,
   ConfigurationOptions,
-} from "./Models";
+} from "./Interfaces";
+
 import Line from "./Line";
 import "./KYCStep.css";
 import PickerComponent from "./PickerComponent";
 import InputValidationField from "./InputValidationField";
 import DatePicker from "./DatePicker";
+import ToggleOption from "./ToggleOption";
+import ReactDOM from "react-dom";
 
 interface IOnboardingData {
   step: number;
@@ -28,7 +32,7 @@ interface IOnboardingData {
 }
 
 interface ValidationData {
-    value: string
+  //   value: string;
 }
 
 class KYCStep extends React.Component<
@@ -40,50 +44,37 @@ class KYCStep extends React.Component<
     nextStep: () => void;
   },
   ValidationData
-  //   {
-  //     value: string;
-  //   }
 > {
+  state: ValidationData = {};
 
+  validation: { [key: string]: any } = {};
 
-    state: ValidationData = {
-        value: "Select your country"
-    }
+  //   componentDidMount(): void {
+  //     console.log("did mount")
+  //     this.props.configuration.items.forEach((item: ComponentConfig) => {
+  //         this.setState((prevState) => {
+  //           return { ...prevState, [item.id]: false };
+  //         });
+  //       })
+  //   }
 
-  constructor(props: any) {
-    super(props);
-
-    // this.state = {value: ""};
-
-    // <>
-    // {/* {} */}
-    
-    //   {props.configuration.items.forEach((item: ComponentConfig) => {
-    //     this.setState((prevState) => {
-    //       return { ...prevState, [item.id]: false };
-    //     });
-    //   })}
-    // </>;
+  componentDidUpdate() {
+    console.log('did update 2');
+    // console.log(ReactDOM.findDOMNode(this))
+    // ReactDOM.findDOMNode(this).scrollLeft = 0;
   }
 
-  validation: {[key: string]: any} = {}
-
-//   componentDidMount(): void {
-//     console.log("did mount")
-//     this.props.configuration.items.forEach((item: ComponentConfig) => {
-//         this.setState((prevState) => {
-//           return { ...prevState, [item.id]: false };
-//         });
-//       })
-//   }
+  nextStep = () => {
+    this.setState({})
+    this.props.nextStep();
+  }
 
   renderSwitch(item: ComponentConfig, key: number) {
-    
     switch (item.type) {
       case ComponentsType.Textfield:
         return <LabelField className={""} label={item.name} key={key} />;
       case ComponentsType.Input:
-        this.validation[item.id] = false
+        this.validation[item.id] = false;
 
         return (
           <InputBoxLight
@@ -101,17 +92,18 @@ class KYCStep extends React.Component<
           />
         );
       case ComponentsType.InputValidation:
-        // console.log(item.configuration?.get( ConfigurationOptions.IsSecure ))
         return (
           <InputValidationField
             key={item.id}
             name={item.name}
-            isSecure={item.configuration?.get( ConfigurationOptions.IsSecure )}
-            auxiliarMessage={item.configuration?.get( ConfigurationOptions.HelperMessage )}
+            isSecure={item.configuration?.get(ConfigurationOptions.IsSecure)}
+            auxiliarMessage={item.configuration?.get(
+              ConfigurationOptions.HelperMessage
+            )}
             onChange={(value: string, isValid: boolean) => {
               this.inputChange(item.id, value, isValid);
             }}
-            validator={item.configuration?.get( ConfigurationOptions.Validator )}
+            validator={item.configuration?.get(ConfigurationOptions.Validator)}
             errorMessage={item.configuration?.get(
               ConfigurationOptions.ErrorMessage
             )}
@@ -123,7 +115,7 @@ class KYCStep extends React.Component<
             key={item.id}
             className="button-light-mode-instance-1"
             text={item.name}
-            onClick={this.props.nextStep}
+            onClick={this.nextStep}
           />
         );
       case ComponentsType.SingleChoiceOption:
@@ -135,7 +127,7 @@ class KYCStep extends React.Component<
             <SingleChoiceOption
               key={item.id + "_option"}
               title={item.name}
-              onClick={this.props.nextStep}
+              onClick={this.nextStep}
             />
             <Line key={item.id} color={"#F2F2F7"} height={1} />
           </div>
@@ -164,16 +156,14 @@ class KYCStep extends React.Component<
       case ComponentsType.Picker:
         const options = item.configuration?.get(ConfigurationOptions.Options);
 
-        let onChange = (selected: string) => {
-          this.setState({ value: selected });
-        };
-
         return (
           <PickerComponent
             key={item.id}
             options={options}
-            selected={this.state.value}
-            onChange={onChange}
+            placeholder={item.name}
+            onChange={(value: string, isValid: boolean) => {
+              this.inputChange(item.id, value, isValid);
+            }}
           />
         );
       case ComponentsType.DatePicker:
@@ -196,12 +186,12 @@ class KYCStep extends React.Component<
             onChange={handleDateChange}
           />
         );
+        case ComponentsType.ToggleOption:
+            return (
+                <ToggleOption key={item.id} title={item.name} options={item.configuration?.get(ConfigurationOptions.Options)} />
+            )
     }
   }
-
-//   state = {
-//     value: "Select your country",
-//   };
 
   isValid = () => {};
 
@@ -216,9 +206,7 @@ class KYCStep extends React.Component<
     });
   };
 
-  continue = () => {
-
-  }
+  continue = () => {};
 
   onChange = (value: string) => {
     console.log("Updated: ", value);
@@ -246,7 +234,7 @@ class KYCStep extends React.Component<
             <KYCFlowButton
               className="button-light-mode-instance-1"
               text={this.props.configuration.button.button}
-              onClick={this.props.nextStep}
+              onClick={this.nextStep}
             />
           )}
         </>

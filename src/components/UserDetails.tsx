@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, MouseEvent } from "react";
-import { StepConfiguration } from "./Models";
+import { StepConfiguration } from "./Interfaces";
 import KYCStep from "./KYCStep";
 
 interface OnboardingData {

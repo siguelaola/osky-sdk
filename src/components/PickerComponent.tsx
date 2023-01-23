@@ -3,18 +3,24 @@ import "./PickerComponent.css";
 
 interface PickerProps {
   options: string[];
-  selected: string;
-  onChange: (value: string) => void;
+  placeholder?: string;
+  onChange: (value: string, isValid: boolean) => void;
 }
 
 interface PickerState {
   open: boolean;
+  value: string
 }
 
 class PickerComponent extends React.Component<PickerProps, PickerState> {
   state = {
     open: false,
+    value: this.props.placeholder || "Select"
   };
+
+    componentDidMount() {
+        this.props.onChange("", false)
+    }
 
   toggleOpen = () => {
     this.setState((prevState) => ({
@@ -23,15 +29,19 @@ class PickerComponent extends React.Component<PickerProps, PickerState> {
   };
 
   handleOptionClick = (value: string) => {
-    this.props.onChange(value);
-    this.setState({ open: false });
+    this.props.onChange(value, true);
+
+    this.setState({ 
+        open: false,
+        value: value
+     });
   };
 
   render() {
     return (
       <div className="picker">
         <div className="picker__selected" onClick={this.toggleOpen}>
-          {this.props.selected}
+          {this.state.value}
         </div>
         {this.state.open && (
           <div className="picker__options">

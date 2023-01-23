@@ -1,9 +1,10 @@
 import React from "react";
-import { ComponentsType, ConfigurationOptions, birthConfiguration, welcomeConfiguration, userDetailsConfiguration, addressConfiguration,
+import { birthConfiguration, welcomeConfiguration, userDetailsConfiguration, addressConfiguration,
 citizenConfiguration, noAvailableConfiguration, fundingSourcesConfiguration, countrySelectorConfiguration, kycCompleted, ssnInputConfiguration} from "./Models";
-import WelcomeScreen from "./WelcomeScreen";
+
 import UserDetails from "./UserDetails";
 import "./Onboarding.css";
+import ReactDOM from "react-dom";
 
 interface IOnboardingData {
   step: number;
@@ -27,6 +28,17 @@ export default class Onboarding extends React.Component<{}, IOnboardingData> {
     country: "",
     levelOfEducation: "",
   };
+
+  componentDidUpdate() {
+    console.log('did update');
+    // console.log(ReactDOM.findDOMNode(this))
+    // ReactDOM.findDOMNode(this).scrollLeft = 0;
+  }
+
+
+  scrollEvent = (e: any) => { 
+    console.log(e.target.scrollTop)
+  }
 
   prevStep = () => {
     const { step } = this.state;

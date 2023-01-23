@@ -1,42 +1,45 @@
-import React from "react";
 import "../App.css";
 import "./Overlay.css";
 import headerLight from "../assets/headerLight.svg";
-import Onboarding from "./Onboarding";
 import DisclosuresView from "./DisclosuresView";
 
+import logo from "../assets/ola_logo.jpg";
 
 import StateMachine from "./StateMachine";
-import { ComponentsType, ConfigurationOptions, birthConfiguration, welcomeConfiguration, userDetailsConfiguration, addressConfiguration,
-    citizenConfiguration, noAvailableConfiguration, fundingSourcesConfiguration, countrySelectorConfiguration, kycCompleted, ssnInputConfiguration} from "./Models";
-    
 
-
-const configuration = [
-    welcomeConfiguration, 
-    ssnInputConfiguration, 
-    userDetailsConfiguration, 
-    addressConfiguration, 
-    citizenConfiguration, 
-    noAvailableConfiguration, 
-    birthConfiguration,
-    fundingSourcesConfiguration,
-    countrySelectorConfiguration,
-    kycCompleted
-    ]
-
+// import { flow } from "./Models";
+import { flow } from "../models/Moneygram";
 
 function Overlay() {
   return (
     <div className="App">
       <div className="onboarding-flow-us">
-        <img className="header-light" src={headerLight} alt="" />
+
+      <img className="header-light" src={headerLight} alt="" />
+
+      {/* <img className="header-light" src={logo} alt="" /> */}
+
+      {/* <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3400 2700" preserveAspectRatio="xMidYMid meet"> */}
+      {/* <object type="image/svg+xml" width="300" height="300" data={headerLight} className="logo"> */}
+      {/* <svg
+        data-src={new URL(headerLight)}
+        fill="currentColor"
+        width="50px"
+        height="50px"
+        style={{
+          color: "red"
+        }}
+      /> */}
+        {/* Kiwi Logo
+        </object> */}
         <div className="input-box-light">
           {/* <Onboarding /> */}
 
-          <StateMachine configuration={configuration} />
+          {/* <StateMachine configuration={configuration} /> */}
+          <StateMachine flow={flow} />
         </div>
-        <DisclosuresView disclosuresURL="https://www.olainvierte.com" message="Your information is secure and will not be shared"/>
+
+      <DisclosuresView disclosuresURL="https://www.olainvierte.com" message="Your information is secure and will not be shared"/>
       </div>
     </div>
   );
