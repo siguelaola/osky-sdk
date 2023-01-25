@@ -19,13 +19,19 @@
 }
 
 .input-default {
-    width: 70%;
+    color: #060d12;
     font-size: 3vh;
     /* flex-basis: 14%; */
     /* max-height: 40px; */
     margin-bottom: 22px;
     border: 1px solid #c7c7cc;
     border-radius: 8px;
+
+    font-family: Object Sans, Arial;
+    font-weight: 400;
+    height: 5vh;
+
+    padding-left: 10px;
 }
 
 /* .input-box-selected {

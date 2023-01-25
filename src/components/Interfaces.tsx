@@ -10,7 +10,9 @@ enum ComponentsType {
     Picker,
     InputValidation,
     DatePicker,
-    ToggleOption
+    ToggleOption, 
+    UploadFiles,
+    Image
 }
 
 enum ScreenComponent {

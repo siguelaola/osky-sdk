@@ -1,10 +1,13 @@
+import { timeStamp } from "console";
 import React, { MouseEventHandler, MouseEvent } from "react";
 import LabelField from "./old/LabelField";
 import "./ToggleOption.css";
 
 interface IToggleOption {
+  id: string;
   title: string;
   options: string[];
+  onChange: (key: string, value: boolean) => void;
 }
 
 // interface
@@ -19,18 +22,34 @@ export default class ToggleOption extends React.Component<
     selected: 0,
   };
 
+  componentDidMount() {
+    this.props.onChange(this.props.id, true)
+  }
+
+  componentDidUpdate(prevProps: Readonly<IToggleOption>, prevState: Readonly<{ selected: number; }>, snapshot?: any): void {
+      console.log(prevState)
+  }
+
   onSelect = (e: MouseEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
+
+    this.props.onChange(this.props.id, index === 0)
+
     this.setState({
         selected: index
     })
   };
 
   renderChoice = (item: string, index: number) => {
+
+    const isSelected = index === this.state.selected
+
     return (
       <button key={index}
-        className={`option ${index === this.state.selected ? "selected" : ""}`}
-        onClick={(e) => { this.onSelect(e, index) }}>
+        className={`option ${isSelected ? "selected" : ""}`}
+        onClick={(e) => { 
+            this.onSelect(e, index);
+        }}>
         {item}
       </button>
     );

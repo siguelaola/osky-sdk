@@ -1,0 +1,8 @@
+input[type=file] {
+    display: block;
+    color: red;
+    font-style: oblique;
+  }
+  input[type=file]::file-selector-button {
+    /* display: none; */
+  }

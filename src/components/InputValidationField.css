@@ -19,6 +19,8 @@
   display: flex;
   font-weight: 700;
   /* margin-bottom: 1px; */
+
+  width: 35vw;
 }
 
 .ssn-input__container {
@@ -26,6 +28,8 @@
   align-items: center;
   margin: 0 0 8px;
   padding: 8px;
+
+  max-width: 20vw;
   /* background-color: #f9f9f9; */
 
   border: 1px solid #C7C7CC;

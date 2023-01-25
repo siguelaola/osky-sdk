@@ -82,22 +82,30 @@
 
 @media only screen and (min-width: 1024px) {
   .onboarding-flow-us {
-    max-height: 1200px;
+    /* max-height: 1200px; */
     max-width: 2000px;
-    height: 90vh;
+    /* height: 90vh; */
     font-size: 6.25vh;
   }
 
   .input-box-light {
-    width: 65%;
+    /* width: 65%; */
+    width: 65vw;
   }
 
   .header-light {
     /* width: 900px; */
-    max-width: 100%;
-    width: 100%;
-    min-height: 300px;
-    height: 10vh;
+    /* max-width: 100%; */
+    
+    /* width: 25vw; */
+
+
+    /* min-height: 300px; */
+    /* min-height: 10vh; */
+    /* height: 10vh; */
+    /* max-height: 40vh; */
+    /* height: 10vh; */
+    width: 34vw;
     object-fit: cover;
     margin-top: 16px;
     margin-bottom: 16px;

@@ -19,6 +19,7 @@ import InputValidationField from "./InputValidationField";
 import DatePicker from "./DatePicker";
 import ToggleOption from "./ToggleOption";
 import ReactDOM from "react-dom";
+import FileUploadMultiple from "./FileUploadMultiple";
 
 interface IOnboardingData {
   step: number;
@@ -59,15 +60,15 @@ class KYCStep extends React.Component<
   //   }
 
   componentDidUpdate() {
-    console.log('did update 2');
+    console.log("did update 2");
     // console.log(ReactDOM.findDOMNode(this))
     // ReactDOM.findDOMNode(this).scrollLeft = 0;
   }
 
   nextStep = () => {
-    this.setState({})
+    this.setState({});
     this.props.nextStep();
-  }
+  };
 
   renderSwitch(item: ComponentConfig, key: number) {
     switch (item.type) {
@@ -186,16 +187,31 @@ class KYCStep extends React.Component<
             onChange={handleDateChange}
           />
         );
-        case ComponentsType.ToggleOption:
-            return (
-                <ToggleOption key={item.id} title={item.name} options={item.configuration?.get(ConfigurationOptions.Options)} />
-            )
+      case ComponentsType.ToggleOption:
+        return (
+          <ToggleOption
+            key={item.id}
+            id={item.id}
+            title={item.name}
+            options={item.configuration?.get(ConfigurationOptions.Options)}
+            onChange={(key: string, value: boolean) => {
+              console.log(key, " ", value);
+              this.inputChange(key, value);
+            }}
+          />
+        );
+      case ComponentsType.UploadFiles:
+        return (
+            <FileUploadMultiple key={item.id} />
+        );
+      case ComponentsType.Image:
+        return <img key={item.name} className="center" style={{padding: "4vh"}} src={require(`../assets/${item.name}`)} alt={item.name} />;
     }
   }
 
   isValid = () => {};
 
-  inputChange = (key: string, value: string, isValid: boolean = true) => {
+  inputChange = (key: string, value: any, isValid: boolean = true) => {
     this.props.handleChange(key, value);
 
     this.setState((prevState) => {

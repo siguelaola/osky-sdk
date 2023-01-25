@@ -1,30 +1,4 @@
 
-/*
-.onboarding-flow-us {
-    color: #160245;
-    text-align: center;
-    min-height: 90vh;
-    background-color: rgb(255, 255, 255);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 28px;
-    padding-left: 5px;
-    padding-right: 5px;
-    font-family: Object Sans, Arial;
-    font-size: 3rem;
-    font-weight: 400;
-    line-height: 30px;
-    display: flex;
-}*/
-
-/* .header-light {
-    width: 900px;
-    height: 56px;
-    object-fit: cover;
-    margin-bottom: 15px;
-} */
-
 .input-box-light {
     width: 65%;
     background-color: #fff;
@@ -41,6 +15,19 @@
     padding-left: 1px;
     display: flex;
 }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+@media only screen and (min-width: 1024px) {
+    .input-box-light {
+      width: 65vw;
+    }
+  }
 
 .step-container {
     display: flex;
@@ -61,6 +48,7 @@
     padding-right: 32px;
     padding-top: 16px;
     padding-bottom: 16px;
+    margin-top: 2vh;
 }
 
 .kyc-title {

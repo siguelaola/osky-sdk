@@ -171,6 +171,7 @@ export default class StateMachine extends React.Component<
     if (currentFlow?.condition) {
         console.log(currentFlow.condition)
         canContinue = eval(currentFlow?.condition)
+        console.log("continue: ", canContinue)
         // canContinue = Function("return " + currentFlow?.condition)();
     }
 
@@ -208,6 +209,7 @@ export default class StateMachine extends React.Component<
       handleChange: this.handleChange,
     };
 
+    console.log("new comp")
     return <DynamicComponent key={this.state.currentNode.title} {...props} />;
   }
 

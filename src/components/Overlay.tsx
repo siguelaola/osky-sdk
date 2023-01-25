@@ -3,7 +3,7 @@ import "./Overlay.css";
 import headerLight from "../assets/headerLight.svg";
 import DisclosuresView from "./DisclosuresView";
 
-import logo from "../assets/ola_logo.jpg";
+import logo from "../assets/moneygram.svg";
 
 import StateMachine from "./StateMachine";
 
@@ -15,9 +15,9 @@ function Overlay() {
     <div className="App">
       <div className="onboarding-flow-us">
 
-      <img className="header-light" src={headerLight} alt="" />
+      {/* <img className="header-light" src={headerLight} alt="" /> */}
 
-      {/* <img className="header-light" src={logo} alt="" /> */}
+      <img className="header-light" src={logo} alt="" />
 
       {/* <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3400 2700" preserveAspectRatio="xMidYMid meet"> */}
       {/* <object type="image/svg+xml" width="300" height="300" data={headerLight} className="logo"> */}
