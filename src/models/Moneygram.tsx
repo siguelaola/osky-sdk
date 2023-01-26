@@ -297,11 +297,11 @@ const businessDetails: StepConfiguration = {
 };
 
 const survey: StepConfiguration = {
-  title: "Please let us know",
+  title: "",
   items: [
     {
-      id: "legalName_field",
-      name: "How do you rate us?",
+      id: "rate1_title",
+      name: "How likely are you to recommend us to a friend or a colleague?",
       type: ComponentsType.Textfield,
     },
     {
@@ -313,23 +313,7 @@ const survey: StepConfiguration = {
           ConfigurationOptions.Options,
           ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
         ],
-      ]),
-    },
-    {
-      id: "find_field",
-      name: "How did you find us?",
-      type: ComponentsType.Textfield,
-    },
-    {
-      id: "find",
-      name: "",
-      type: ComponentsType.Picker,
-      configuration: new Map<ConfigurationOptions, any>([
-        [
-          ConfigurationOptions.Options,
-          ["Internet", "Friend", "Ads", "Using our service", "Other"],
-        ],
-      ]),
+      ])
     },
   ],
   button: { button: "Complete", className: "button-light-mode-instance-1" },
@@ -411,7 +395,7 @@ flow.set(screening, {
 });
 
 flow.set(businessDetails, {
-  // nextStep: survey
+  nextStep: survey
 });
 
 export { flow };

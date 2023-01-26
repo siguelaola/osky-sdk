@@ -118,6 +118,9 @@ interface IOnboardingData {
   lastName: String;
   country: string;
   levelOfEducation: string;
+  past_declined: boolean;
+  past_services: boolean;
+  transfer_services: boolean;
 }
 
 
@@ -144,6 +147,9 @@ export default class StateMachine extends React.Component<
     lastName: "",
     country: "",
     levelOfEducation: "",
+    past_declined: true,
+    past_services: true,
+    transfer_services: true
   };
 
   //   prevStep = () => {
@@ -171,7 +177,9 @@ export default class StateMachine extends React.Component<
     if (currentFlow?.condition) {
         console.log(currentFlow.condition)
         canContinue = eval(currentFlow?.condition)
-        console.log("continue: ", canContinue)
+
+        // if (this.state.)
+
         // canContinue = Function("return " + currentFlow?.condition)();
     }
 
@@ -209,7 +217,6 @@ export default class StateMachine extends React.Component<
       handleChange: this.handleChange,
     };
 
-    console.log("new comp")
     return <DynamicComponent key={this.state.currentNode.title} {...props} />;
   }
 

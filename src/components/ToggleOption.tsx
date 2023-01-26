@@ -26,10 +26,6 @@ export default class ToggleOption extends React.Component<
     this.props.onChange(this.props.id, true)
   }
 
-  componentDidUpdate(prevProps: Readonly<IToggleOption>, prevState: Readonly<{ selected: number; }>, snapshot?: any): void {
-      console.log(prevState)
-  }
-
   onSelect = (e: MouseEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
 

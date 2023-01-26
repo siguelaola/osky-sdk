@@ -29,13 +29,6 @@ export default class Onboarding extends React.Component<{}, IOnboardingData> {
     levelOfEducation: "",
   };
 
-  componentDidUpdate() {
-    console.log('did update');
-    // console.log(ReactDOM.findDOMNode(this))
-    // ReactDOM.findDOMNode(this).scrollLeft = 0;
-  }
-
-
   scrollEvent = (e: any) => { 
     console.log(e.target.scrollTop)
   }
@@ -46,7 +39,6 @@ export default class Onboarding extends React.Component<{}, IOnboardingData> {
   };
 
   nextStep = () => {
-    console.log("next");
     const { step } = this.state;
     this.setState({ step: step + 1 });
   };
@@ -61,8 +53,6 @@ export default class Onboarding extends React.Component<{}, IOnboardingData> {
         [key]: value,
       };
     });
-
-    console.log(this.state);
   };
 
   drawComponent(step: number, values: IOnboardingData) {

@@ -59,12 +59,6 @@ class KYCStep extends React.Component<
   //       })
   //   }
 
-  componentDidUpdate() {
-    console.log("did update 2");
-    // console.log(ReactDOM.findDOMNode(this))
-    // ReactDOM.findDOMNode(this).scrollLeft = 0;
-  }
-
   nextStep = () => {
     this.setState({});
     this.props.nextStep();
@@ -195,7 +189,6 @@ class KYCStep extends React.Component<
             title={item.name}
             options={item.configuration?.get(ConfigurationOptions.Options)}
             onChange={(key: string, value: boolean) => {
-              console.log(key, " ", value);
               this.inputChange(key, value);
             }}
           />
