@@ -167,7 +167,6 @@ class KYCStep extends React.Component<
 
         const handleDateChange = (startDate: string, endDate: string) => {
           // const handleDateChange = (startDate: Date, endDate: Date) => {
-          console.log("Start: ", startDate, " - endDate: ", endDate);
           //   setStart(startDate);
           //   setEnd(endDate);
         };

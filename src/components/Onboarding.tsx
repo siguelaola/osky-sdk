@@ -29,10 +29,6 @@ export default class Onboarding extends React.Component<{}, IOnboardingData> {
     levelOfEducation: "",
   };
 
-  scrollEvent = (e: any) => { 
-    console.log(e.target.scrollTop)
-  }
-
   prevStep = () => {
     const { step } = this.state;
     this.setState({ step: step - 1 });

@@ -158,8 +158,6 @@ export default class StateMachine extends React.Component<
   //   };
 
   onError = () => {
-    console.log("on Error");
-    
     const currentFlow = this.props.flow.get(this.state.currentNode)
 
     if (currentFlow?.onError) {
