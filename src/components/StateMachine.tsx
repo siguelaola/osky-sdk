@@ -174,7 +174,7 @@ export default class StateMachine extends React.Component<
 
     if (currentFlow?.condition) {
         console.log(currentFlow.condition)
-        canContinue = eval(currentFlow?.condition)
+        canContinue = !(this.state.past_declined || this.state.past_services || this.state.transfer_services)
 
         // if (this.state.)
 
