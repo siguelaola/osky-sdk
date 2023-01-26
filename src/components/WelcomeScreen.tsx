@@ -11,11 +11,11 @@ class WelcomeScreen extends React.Component<{configuration: StepConfiguration, n
           <span className="main_subtitle">
           {this.props.configuration.subtitle}
           </span>
-          <KYCFlowButton
+          {/* <KYCFlowButton
           className="button-light-mode-instance-1"
           text={this.props.configuration.button?.button ?? ""}
           onClick={this.props.nextStep}
-        />
+        /> */}
     </div>
     );
   }

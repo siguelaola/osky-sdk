@@ -335,21 +335,35 @@ const uploadDocument: StepConfiguration = {
 };
 
 const applicationRejected: StepConfiguration = {
-  title: "Application unsuccessful",
-  items: [
-    {
-      id: "image",
-      name: "rejected.png",
-      type: ComponentsType.Image,
-    },
-    {
-      id: "title",
-      name: "We're sorry, but your business is not eligible to be a Moneygram agent at this time. Do not hesitate to re-apply in the future.",
-      type: ComponentsType.Textfield,
-    },
-  ],
-  screen: ScreenComponent.userDetails,
-};
+    title: "Application unsuccessful",
+    items: [
+      {
+        id: "image",
+        name: "rejected.png",
+        type: ComponentsType.Image,
+      },
+      {
+        id: "title",
+        name: "We're sorry, but your business is not eligible to be a Moneygram agent at this time. Do not hesitate to re-apply in the future.",
+        type: ComponentsType.Textfield,
+      },
+    ],
+    screen: ScreenComponent.userDetails,
+  };
+
+
+const completed: StepConfiguration = {
+    title: "Thank you",
+    subtitle: "We will review your application and get back to you in 2-3 days.",
+    items: [
+      {
+        id: "ty",
+        name: "We will review your application and get back to you in 2-3 days.",
+        type: ComponentsType.Textfield,
+      },
+    ],
+    screen: ScreenComponent.welcomeScreen,
+  };
 
 let flow = new Map<StepConfiguration, IStepFlow>();
 // flow.set(login, {
@@ -395,7 +409,11 @@ flow.set(screening, {
 });
 
 flow.set(businessDetails, {
-  nextStep: survey
-});
+    nextStep: survey
+  });
+
+  flow.set(survey, {
+    nextStep: completed
+  });
 
 export { flow };
