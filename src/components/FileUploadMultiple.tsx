@@ -1,6 +1,6 @@
 import React from "react";
 import { ChangeEvent } from "react";
-import "./FileUploadComponent.css";
+import "./css/FileUploadComponent.css";
 
 class FileUploadMultiple extends React.Component<
   {},

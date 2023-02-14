@@ -1,5 +1,5 @@
 import React from "react";
-import "./PickerComponent.css";
+import "./css/PickerComponent.css";
 
 interface PickerProps {
   options: string[];

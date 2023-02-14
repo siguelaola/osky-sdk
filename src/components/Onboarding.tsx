@@ -3,7 +3,7 @@ import { birthConfiguration, welcomeConfiguration, userDetailsConfiguration, add
 citizenConfiguration, noAvailableConfiguration, fundingSourcesConfiguration, countrySelectorConfiguration, kycCompleted, ssnInputConfiguration} from "./Models";
 
 import UserDetails from "./UserDetails";
-import "./Onboarding.css";
+import "./css/Onboarding.css";
 import ReactDOM from "react-dom";
 
 interface IOnboardingData {

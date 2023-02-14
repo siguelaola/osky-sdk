@@ -1,6 +1,6 @@
 import { Component } from "react";
 import icon from '../assets/chevron-right.svg';
-import "./SingleChoiceOption.css";
+import "./css/SingleChoiceOption.css";
 
 class SingleChoiceOption extends Component<{
   title: string;

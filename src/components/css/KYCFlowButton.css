@@ -1,4 +1,4 @@
-.button-light-mode {
+.standard-button {
   background-color: #160245;
   border: none;
   border-radius: 28px;
@@ -9,8 +9,12 @@
   display: flex;
 }
 
-.type-button-label-big-instance-1 {
+.button-label {
   height: 45%;
   flex-basis: 60%;
   margin-bottom: 1px;
+}
+
+.disabled {
+  background-color: #8474a9 !important;
 }

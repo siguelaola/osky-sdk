@@ -1,7 +1,7 @@
 import { timeStamp } from "console";
 import React, { MouseEventHandler, MouseEvent } from "react";
-import LabelField from "./old/LabelField";
-import "./ToggleOption.css";
+import LabelField from "./css/LabelField";
+import "./css/ToggleOption.css";
 
 interface IToggleOption {
   id: string;

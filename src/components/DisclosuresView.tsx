@@ -1,5 +1,5 @@
 import { Component } from "react";
-import LabelField from "./old/LabelField";
+import LabelField from "./css/LabelField";
 import "./DisclosuresView.css";
 import iconLocked from "../assets/lockIcon.svg";
 

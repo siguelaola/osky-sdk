@@ -1,6 +1,6 @@
 import * as React from "react";
-import LabelField from "./old/LabelField";
-import InputBoxLight from "./old/InputBoxLight";
+import LabelField from "./css/LabelField";
+import InputBoxLight from "./InputBoxLight";
 import KYCFlowButton from "./KYCFlowButton";
 import SingleChoiceOption from "./SingleChoiceOption";
 import CheckboxInput from "./CheckboxInput";
@@ -12,13 +12,13 @@ import {
   ConfigurationOptions,
 } from "./Interfaces";
 
+import "./css/KYCStep.css";
+
 import Line from "./Line";
-import "./KYCStep.css";
 import PickerComponent from "./PickerComponent";
 import InputValidationField from "./InputValidationField";
 import DatePicker from "./DatePicker";
 import ToggleOption from "./ToggleOption";
-import ReactDOM from "react-dom";
 import FileUploadMultiple from "./FileUploadMultiple";
 
 interface IOnboardingData {
@@ -33,6 +33,7 @@ interface IOnboardingData {
 }
 
 interface ValidationData {
+    canContinue: boolean;
   //   value: string;
 }
 
@@ -46,7 +47,9 @@ class KYCStep extends React.Component<
   },
   ValidationData
 > {
-  state: ValidationData = {};
+  state: ValidationData = {
+    canContinue: true
+  };
 
   validation: { [key: string]: any } = {};
 
@@ -60,8 +63,12 @@ class KYCStep extends React.Component<
   //   }
 
   nextStep = () => {
-    this.setState({});
-    this.props.nextStep();
+    console.log("current state: ", this.state)
+
+    if (this.state.canContinue) {
+        this.setState({});
+        this.props.nextStep();
+    }
   };
 
   renderSwitch(item: ComponentConfig, key: number) {
@@ -110,6 +117,7 @@ class KYCStep extends React.Component<
             key={item.id}
             className="button-light-mode-instance-1"
             text={item.name}
+            enabled={true}
             onClick={this.nextStep}
           />
         );
@@ -208,9 +216,19 @@ class KYCStep extends React.Component<
 
     this.setState((prevState) => {
       return {
-        ...prevState,
+        ...prevState,   
         [key]: isValid,
       };
+    }, () => {
+        let canContinue = true
+        Object.entries(this.state).forEach(([key, value]) => {
+            if (key !== "canContinue") {
+                console.log("key: ", key)
+                canContinue = canContinue && value
+            }
+    });
+
+        this.setState({ canContinue: canContinue })
     });
   };
 
@@ -242,6 +260,7 @@ class KYCStep extends React.Component<
             <KYCFlowButton
               className="button-light-mode-instance-1"
               text={this.props.configuration.button.button}
+              enabled={this.state.canContinue}
               onClick={this.nextStep}
             />
           )}

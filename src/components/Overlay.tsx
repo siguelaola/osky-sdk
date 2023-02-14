@@ -1,5 +1,5 @@
 import "../App.css";
-import "./Overlay.css";
+import "./css/Overlay.css";
 import headerLight from "../assets/headerLight.svg";
 import DisclosuresView from "./DisclosuresView";
 

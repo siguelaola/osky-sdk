@@ -83,13 +83,14 @@
 @media only screen and (min-width: 1024px) {
   .onboarding-flow-us {
     /* max-height: 1200px; */
-    max-width: 2000px;
+    max-width: 1024px;
     /* height: 90vh; */
     font-size: 6.25vh;
   }
 
   .input-box-light {
     /* width: 65%; */
+    max-width: 1024px;
     width: 65vw;
   }
 
@@ -106,6 +107,9 @@
     /* max-height: 40vh; */
     /* height: 10vh; */
     width: 34vw;
+    max-width: 1024px;
+
+    /* max-width: 500px; */
     object-fit: cover;
     margin-top: 16px;
     margin-bottom: 16px;

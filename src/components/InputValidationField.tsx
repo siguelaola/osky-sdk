@@ -1,7 +1,7 @@
 import React from "react";
 import "./InputValidationField.css";
 import lockIcon from "../assets/lockIcon.svg";
-import LabelField from "./old/LabelField";
+import LabelField from "./css/LabelField";
 
 interface SSNInputProps {
   name: string;

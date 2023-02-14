@@ -1,13 +1,14 @@
 import * as React from "react";
-// import "./ButtonLightMode.css";
 import { MouseEvent } from "react";
 
-import "./old/ButtonLightMode";
-import TypeButtonLabelBig from "./old/TypeButtonLabelBig";
+// import "./css/ButtonLightMode";
+import "./css/KYCFlowButton.css";
+import ButtonLabel from "./ButtonLabel";
 
 class KYCFlowButton extends React.Component<{
   className: string;
   text: string;
+  enabled: boolean;
   onClick: () => void;
 }> {
   Continue = (e: MouseEvent<HTMLButtonElement>) => {
@@ -18,12 +19,11 @@ class KYCFlowButton extends React.Component<{
   render() {
     return (
       <button
-        className={`button-light-mode ${this.props.className}`}
+        className={`standard-button ${this.props.className} ${this.props.enabled === false ? "disabled" : ""}`}
         onClick={this.props.onClick}
-        disabled={true}
       >
-        <TypeButtonLabelBig
-          className="type-button-label-big-instance-1"
+        <ButtonLabel
+          className="button-label"
           text={this.props.text}
           onClick={this.props.onClick}
         />

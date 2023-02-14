@@ -1,6 +1,6 @@
 import React from "react";
 import Line from "./Line";
-import "./CheckboxInput.css";
+import "./css/CheckboxInput.css";
 
 interface ToggleCheckboxProps {
   title: string;
