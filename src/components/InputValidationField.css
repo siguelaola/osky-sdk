@@ -1,4 +1,4 @@
-.ssn-input {
+.validation-container {
   display: flex;
   flex-direction: column;
 
@@ -8,7 +8,7 @@
   line-height: 30px;
 }
 
-.ssn-input__title {
+.input-title {
   margin: 0 0 8px;
   color: #060d12;
   flex-direction: row;
@@ -23,7 +23,7 @@
   width: 35vw;
 }
 
-.ssn-input__container {
+.input-container {
   display: flex;
   align-items: center;
   margin: 0 0 8px;
@@ -36,29 +36,29 @@
   border-radius: 8px;
 }
 
-.ssn-input__field {
+.input-field {
   flex: 1;
   padding: 8px;
   border: none;
   border-radius: 4px;
 }
 
-.ssn-input__field:focus {
+.input-field:focus {
     outline: 0;
     border: none;
   }
 
-.auxiliar-message {
+.input-auxiliar-message {
   font-size: 2vh;
 }
 
-.ssn-input__lock {
+.input-lock {
   width: 20px;
   height: 20px;
   margin-left: 8px;
 }
 
-.ssn-input__error {
+.input-error {
   color: red !important;
 
   /* font-family: Object Sans, Arial;
@@ -67,10 +67,10 @@
   line-height: 30px; */
 }
 
-.invalid {
+.input-invalid {
   color: red !important;
 }
 
-.invalid-border {
+.input-invalid-border {
     border: 1px solid red;
 }

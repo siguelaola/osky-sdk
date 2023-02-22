@@ -85,9 +85,9 @@ const userDetailsConfiguration: StepConfiguration = {
             // [ConfigurationOptions.HelperMessage, "Data is secured with 256-bit encryption"],
             [ConfigurationOptions.ErrorMessage, "Invalid SSN Format. Should be xxx-xx-xxxx"],
             // [ConfigurationOptions.IsSecure, true],
-            [ConfigurationOptions.Validator, (value: string) => {
-                return /^\d{3}-\d{2}-\d{4}$/.test(value);
-            }]
+            // [ConfigurationOptions.Validator, (value: string) => {
+            //     return /^\d{3}-\d{2}-\d{4}$/.test(value);
+            // }]
         ])},
         { id: "middle_input",  name: "Middle Name", type: ComponentsType.Textfield },
         { id: "middleName",  name: "", type: ComponentsType.Input },
@@ -213,9 +213,9 @@ const ssnInputConfiguration: StepConfiguration = {
                 [ConfigurationOptions.HelperMessage, "Data is secured with 256-bit encryption"],
                 [ConfigurationOptions.ErrorMessage, "Invalid SSN Format. Should be xxx-xx-xxxx"],
                 [ConfigurationOptions.IsSecure, true],
-                [ConfigurationOptions.Validator, (value: string) => {
-                    return /^\d{3}-\d{2}-\d{4}$/.test(value);
-                }]
+                // [ConfigurationOptions.Validator, (value: string) => {
+                //     return /^\d{3}-\d{2}-\d{4}$/.test(value);
+                // }]
             ]),
         },
     ],
@@ -235,9 +235,9 @@ const birthConfiguration: StepConfiguration = {
             configuration: new Map<ConfigurationOptions, any>([
                 [ConfigurationOptions.HelperMessage, "Data is secured with 256-bit encryption"],
                 [ConfigurationOptions.ErrorMessage, "Invalid SSN Format. Should be xxx-xx-xxxx"],
-                [ConfigurationOptions.Validator, (value: string) => {
-                    return /^\d{3}-\d{2}-\d{4}$/.test(value);
-                }]
+                // [ConfigurationOptions.Validator, (value: string) => {
+                //     return /^\d{3}-\d{2}-\d{4}$/.test(value);
+                // }]
             ]),
         },
     ],

@@ -1,0 +1,193 @@
+{
+    "data": {
+        "time": 123123,
+        "blocks": [
+            {
+                "id": "hZAjSnqYMX",
+                "type": "image",
+                "data": {
+                    "url": "https://....",
+                    "withBorder": false,
+                    "withBackground": false,
+                    "stretched": true,
+                    "caption": "CodeX Code Camp 2019"
+                }
+            },
+            {
+                "id": "hZAjSnqYMX",
+                "type": "video",
+                "data": {
+                    "url": "https://....",
+                    "withBorder": false,
+                    "withBackground": false,
+                    "stretched": true,
+                    "caption": "CodeX Code Camp 2019"
+                }
+            },
+            /*NOT IMPLEMENTED ON MY SIDE*/
+            {
+                "id": "os_YI4eub4",
+                "type": "list",
+                "data": {
+                    "type": "unordered",
+                    "items": [
+                        "It is a block-style editor",
+                        "It returns clean data output in JSON",
+                        "Designed to be extendable and pluggable with a <a href=\"https://editorjs.io/creating-a-block-tool\">simple API</a>"
+                    ]
+                }
+            },
+            {
+                "id": "hZAjSnqYMX",
+                "type": "paragraph",
+                "data": {
+                    "placeholder": "null | text",
+                    "text": "The example of text that was written in <b>one of popular</b> text editors.",
+                    "alignment": "left | center | right | justfied"
+                }
+            },
+            /*NOT IMPLEMENTED ON MY SIDE*/
+            {
+                "id": "hZAjSnqYMX",
+                "type": "header",
+                "data": {
+                    "text": "With the header of course",
+                    "level": 2, /*(this is from editor.js, not sure what it is)*/
+                    "alignment": "left | center | right | justfied"
+                }
+            },
+            {
+                "id": "hZAjSnqYMX",
+                "type": "checklist",
+                "data": {
+                    "items": [
+                        {
+                            "id": "hZAjSnqYMX",
+                            "text": "This is a block-styled editor",
+                            "checked": true
+                        },
+                        {
+                            "id": "hZAjSnqYMX",
+                            "text": "Clean output data",
+                            "checked": false
+                        },
+                        {
+                            "id": "hZAjSnqYMX",
+                            "text": "Simple and powerful API",
+                            "checked": true
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "hZAjSnqYMX",
+                "type": "picker",
+                "data": {
+                    "title": "Select a country",
+                    "items": [
+                        {
+                            "id": "hZAjSnqYMX",
+                            "text": "Spain"
+                        },
+                        {
+                            "id": "hZAjSnqYMX",
+                            "text": "Belgium"
+                        },
+                        {
+                            "id": "hZAjSnqYMX",
+                            "text": "France"
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "hZAjSnqYMX",
+                "type": "toggleOption",
+                "data": {
+                    "title": "Do you currently provide any service?",
+                    "items": [
+                        {
+                            "id": "hZAjSnqYMX",
+                            "title": "Yes"
+                        },
+                        {
+                            "id": "hZAjSnqYMX",
+                            "title": "No"
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "hZAjSnqYMX",
+                "type": "input",
+                "data": {
+                    "title": "First Name",
+                    "placeholder": "Hello",
+                    "required": true,
+                    "is-secure": true,
+                    "error-message": "Please fill it",
+                    "auxiliar-message": "Add your name",
+                    "validation": "email / ssn / .. / custom",
+                    "regex": "^[\\w\\-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
+                    "alignment": "left | center | right | justfied",
+                    "icon": {
+                        "id": "hZAjSnqYMX",
+                        "type": "image",
+                        "data": {
+                            "url": "https://....",
+                            "withBorder": false,
+                            "withBackground": false,
+                            "stretched": true,
+                            "caption": "CodeX Code Camp 2019"
+                        }
+                    }
+                }
+            },
+            {
+                "id": "hZAjSnqYMX",
+                "type": "clickable-option",
+                "data": {
+                    "title": "First Name",
+                    "icon": {
+                        "id": "hZAjSnqYMX",
+                        "type": "image",
+                        "data": {
+                            "url": "https://....",
+                            "withBorder": false,
+                            "withBackground": false,
+                            "stretched": true,
+                            "caption": "CodeX Code Camp 2019"
+                        }
+                    }
+                }
+            },
+            {
+                /* WE ONLY SUPPORT CONTINUE / NEXT BUTTON HERE*/
+                "id": "hZAjSnqYMX",
+                "type": "button",
+                "title": "Continue",
+                "data": {}
+            },
+            {
+                "id": "hZAjSnqYMX",
+                "type": "separator",
+                "data": {
+                    "width": "100%"
+                }
+            },
+            {
+                "id": "hZAjSnqYMX",
+                "type": "datePicker",
+                "data": {
+                    "title": "Date of Birth",
+                    "placeholder": "Hello",
+                    "required": true,
+                    "error-message": "Please fill it",
+                    "auxiliar-message": "Add your name",
+                    "validation": "email / ssn / .. / custom", // ??
+                    "regex": "^[\\w\\-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$" // ??
+                }
+            },
+        ]
+    }
+}

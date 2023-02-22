@@ -105,7 +105,10 @@ class KYCStep extends React.Component<
             onChange={(value: string, isValid: boolean) => {
               this.inputChange(item.id, value, isValid);
             }}
-            validator={item.configuration?.get(ConfigurationOptions.Validator)}
+            // validator={item.configuration?.get(ConfigurationOptions.Validator)}
+            // validationData=[item.configuration?.get(ConfigurationOptions.ValidatorType), item.configuration?.get(ConfigurationOptions.ValidationCustom)]
+            validationData={[item.configuration?.get(ConfigurationOptions.ValidatorType), item.configuration?.get(ConfigurationOptions.ValidationCustom)]}
+            // validationType=[item.configuration?.get(ConfigurationOptions.ValidatorType), item.configuration?.get(ConfigurationOptions.ValidationCustom)]
             errorMessage={item.configuration?.get(
               ConfigurationOptions.ErrorMessage
             )}
@@ -223,7 +226,6 @@ class KYCStep extends React.Component<
         let canContinue = true
         Object.entries(this.state).forEach(([key, value]) => {
             if (key !== "canContinue") {
-                console.log("key: ", key)
                 canContinue = canContinue && value
             }
     });

@@ -20,12 +20,7 @@ const login: StepConfiguration = {
           "Invalid email. Should be xxx@xxx.xxx",
         ],
         [ConfigurationOptions.IsSecure, true],
-        [
-          ConfigurationOptions.Validator,
-          (value: string) => {
-            return /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
-          },
-        ],
+        [ConfigurationOptions.ValidatorType, "email"]
       ]),
     },
     {
@@ -39,14 +34,8 @@ const login: StepConfiguration = {
           "Password must be at least 8 characters and contain a number an a symbol",
         ],
         [ConfigurationOptions.IsSecure, true],
-        [
-          ConfigurationOptions.Validator,
-          (value: string) => {
-            return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
-              value
-            );
-          },
-        ],
+        [ConfigurationOptions.ValidatorType, "custom"],
+        [ConfigurationOptions.ValidationCustom, "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+|:;<>,.?\\/])\\S{8,}$"],
       ]),
     },
   ],
@@ -76,6 +65,22 @@ const aboutYou: StepConfiguration = {
     { id: "firstName", name: "", type: ComponentsType.Input },
     { id: "lastName_field", name: "Last Name", type: ComponentsType.Textfield },
     { id: "lastName", name: "", type: ComponentsType.Input },
+    {
+        id: "login_id",
+        name: "Email",
+        type: ComponentsType.InputValidation,
+        configuration: new Map<ConfigurationOptions, any>([
+            [
+                ConfigurationOptions.ValidatorType, "email"
+                // (value: string) => {
+                //     // ^\s*$
+                //   return /(?!^$)([^\s])/.test(
+                //     value
+                //   );
+                // },
+              ],
+        ]),
+      }
   ],
   button: { button: "Continue", className: "button-light-mode-instance-1" },
   screen: ScreenComponent.userDetails,
@@ -193,7 +198,7 @@ const products: StepConfiguration = {
       type: ComponentsType.Textfield,
     },
     {
-      id: "country",
+      id: "products",
       name: "Select an option",
       type: ComponentsType.Picker,
       configuration: new Map<ConfigurationOptions, any>([
@@ -366,9 +371,9 @@ const completed: StepConfiguration = {
   };
 
 let flow = new Map<StepConfiguration, IStepFlow>();
-// flow.set(login, {
-//   nextStep: aboutYou,
-// });
+flow.set(login, {
+  nextStep: aboutYou,
+});
 
 
 // flow.set(screening, {

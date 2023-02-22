@@ -23,7 +23,8 @@ enum ScreenComponent {
 enum ConfigurationOptions {
     Options,
     Position,
-    Validator,
+    ValidatorType,
+    ValidationCustom,
     IsSecure,
     ErrorMessage,
     HelperMessage
