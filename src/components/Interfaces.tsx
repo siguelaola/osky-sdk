@@ -12,7 +12,8 @@ enum ComponentsType {
     DatePicker,
     ToggleOption, 
     UploadFiles,
-    Image
+    Image,
+    Video
 }
 
 enum ScreenComponent {
@@ -27,7 +28,12 @@ enum ConfigurationOptions {
     ValidationCustom,
     IsSecure,
     ErrorMessage,
-    HelperMessage
+    HelperMessage,
+    URL, 
+    Border, 
+    Background, 
+    Stretched, 
+    Caption
 }
 
 interface ComponentConfig {

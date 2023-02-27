@@ -1,0 +1,152 @@
+{
+  "blocks": [
+    {
+      "id": "1",
+      "type": "image",
+      "data": {
+        "url": "https://example.com/image.png",
+        "withBorder": true,
+        "withBackground": false,
+        "stretched": true,
+        "caption": "An example image"
+      }
+    },
+    {
+      "id": "2",
+      "type": "video",
+      "data": {
+        "url": "https://example.com/video.mp4",
+        "withBorder": true,
+        "withBackground": false,
+        "stretched": true,
+        "caption": "An example video"
+      }
+    },
+    {
+      "id": "3",
+      "type": "list",
+      "data": {
+        "type": "unordered",
+        "items": ["List item 1", "List item 2", "List item 3"]
+      }
+    },
+    {
+      "id": "4",
+      "type": "paragraph",
+      "data": {
+        "placeholder": null,
+        "text": "This is an example paragraph.",
+        "alignment": "left"
+      }
+    },
+    {
+      "id": "5",
+      "type": "header",
+      "data": {
+        "text": "This is an example header.",
+        "level": 1,
+        "alignment": "center"
+      }
+    },
+    {
+      "id": "6",
+      "type": "checklist",
+      "data": {
+        "items": [
+          {
+            "id": "1",
+            "text": "Checklist item 1",
+            "checked": true
+          },
+          {
+            "id": "2",
+            "text": "Checklist item 2",
+            "checked": false
+          },
+          {
+            "id": "3",
+            "text": "Checklist item 3",
+            "checked": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "type": "picker",
+      "data": {
+        "title": "An example picker",
+        "items": [
+          {
+            "id": "1",
+            "text": "Option 1"
+          },
+          {
+            "id": "2",
+            "text": "Option 2"
+          },
+          {
+            "id": "3",
+            "text": "Option 3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "8",
+      "type": "toggleOption",
+      "data": {
+        "title": "An example toggle",
+        "items": [
+          {
+            "id": "1",
+            "title": "Toggle 1"
+          },
+          {
+            "id": "2",
+            "title": "Toggle 2"
+          },
+          {
+            "id": "3",
+            "title": "Toggle 3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "UVWXY",
+      "type": "input",
+      "data": {
+        "title": "Input Field",
+        "placeholder": "Enter text here",
+        "required": true,
+        "isSecure": false,
+        "errorMessage": "Please enter a valid value.",
+        "auxiliaryMessage": "",
+        "validation": "ssn",
+        "alignment": "left",
+        "icon": {
+          "url": "https://example.com/icon.png",
+          "withBorder": false,
+          "withBackground": false,
+          "stretched": false,
+          "caption": "Example Icon"
+        }
+      }
+    },
+    {
+      "id": "123",
+      "type": "clickableOption",
+      "data": {
+        "title": "Click Me!",
+        "icon": {
+          "url": "https://example.com/image.png",
+          "withBorder": true,
+          "withBackground": false,
+          "stretched": false,
+          "caption": "An example image"
+        }
+      }
+    }
+  ]
+}

@@ -54,6 +54,22 @@ const welcome: StepConfiguration = {
     screen: ScreenComponent.userDetails,
 }
 
+const video: StepConfiguration = {
+    title: "Welcome!",
+    items: [
+        { 
+            id: "text1", 
+            name: "Get an edge over your competition and increase store traffic with our transfer services, payment services, and money orders.", 
+            type: ComponentsType.Video,
+            configuration: new Map<ConfigurationOptions, any>([
+                [ConfigurationOptions.URL, "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"]
+                ])
+    },
+    ],
+    button: { button: "Continue", className: "button-light-mode-instance-1" },
+    screen: ScreenComponent.userDetails,
+}
+
 const aboutYou: StepConfiguration = {
   title: "Tell us about you",
   items: [
@@ -371,9 +387,13 @@ const completed: StepConfiguration = {
   };
 
 let flow = new Map<StepConfiguration, IStepFlow>();
-flow.set(login, {
-  nextStep: aboutYou,
-});
+// flow.set(login, {
+//   nextStep: aboutYou,
+// });
+
+flow.set(video, {
+    nextStep: aboutYou
+})
 
 
 // flow.set(screening, {

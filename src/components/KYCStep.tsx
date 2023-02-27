@@ -21,6 +21,9 @@ import DatePicker from "./DatePicker";
 import ToggleOption from "./ToggleOption";
 import FileUploadMultiple from "./FileUploadMultiple";
 
+import { DashboardData } from "../interfaces/types";
+import VideoComponent from "./VideoComponent";
+
 interface IOnboardingData {
   step: number;
   email: string;
@@ -33,7 +36,7 @@ interface IOnboardingData {
 }
 
 interface ValidationData {
-    canContinue: boolean;
+  canContinue: boolean;
   //   value: string;
 }
 
@@ -48,27 +51,38 @@ class KYCStep extends React.Component<
   ValidationData
 > {
   state: ValidationData = {
-    canContinue: true
+    canContinue: true,
   };
 
   validation: { [key: string]: any } = {};
 
-  //   componentDidMount(): void {
-  //     console.log("did mount")
-  //     this.props.configuration.items.forEach((item: ComponentConfig) => {
-  //         this.setState((prevState) => {
-  //           return { ...prevState, [item.id]: false };
-  //         });
-  //       })
-  //   }
+  loadBlocksFromFile = async (filename: string): Promise<DashboardData | undefined> => {
+    try {
+      const response = await fetch(`file://${filename}`);
+      const json = await response.json();
+      return json.blocks as DashboardData;
+    } catch (err) {
+      console.error(`Error loading blocks from file: ${filename}`, err);
+    //   return BlockModel()
+    }
+  };
 
   nextStep = () => {
-    console.log("current state: ", this.state)
+    console.log("current state: ", this.state);
 
     if (this.state.canContinue) {
-        this.setState({});
-        this.props.nextStep();
+      this.setState({});
+      this.props.nextStep();
     }
+
+    fetch("http://localhost:8080/files/types.json")
+      .then((response) => response.json())
+      .then((data: DashboardData) => {
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error(error)
+      });
   };
 
   renderSwitch(item: ComponentConfig, key: number) {
@@ -86,10 +100,6 @@ class KYCStep extends React.Component<
             valueDidChange={(key, value) => {
               this.inputChange(key, value);
             }}
-            // valueDidChange={this.inputChange}
-            // handleChange={this.inputChange}
-            // handleChange={this.onChange}
-            // handleChange={this.props.handleChange}
             placeholder={""}
           />
         );
@@ -105,10 +115,10 @@ class KYCStep extends React.Component<
             onChange={(value: string, isValid: boolean) => {
               this.inputChange(item.id, value, isValid);
             }}
-            // validator={item.configuration?.get(ConfigurationOptions.Validator)}
-            // validationData=[item.configuration?.get(ConfigurationOptions.ValidatorType), item.configuration?.get(ConfigurationOptions.ValidationCustom)]
-            validationData={[item.configuration?.get(ConfigurationOptions.ValidatorType), item.configuration?.get(ConfigurationOptions.ValidationCustom)]}
-            // validationType=[item.configuration?.get(ConfigurationOptions.ValidatorType), item.configuration?.get(ConfigurationOptions.ValidationCustom)]
+            validationData={[
+              item.configuration?.get(ConfigurationOptions.ValidatorType),
+              item.configuration?.get(ConfigurationOptions.ValidationCustom),
+            ]}
             errorMessage={item.configuration?.get(
               ConfigurationOptions.ErrorMessage
             )}
@@ -204,11 +214,33 @@ class KYCStep extends React.Component<
           />
         );
       case ComponentsType.UploadFiles:
-        return (
-            <FileUploadMultiple key={item.id} />
-        );
+        return <FileUploadMultiple key={item.id} />;
       case ComponentsType.Image:
-        return <img key={item.name} className="center" style={{padding: "4vh"}} src={require(`../assets/${item.name}`)} alt={item.name} />;
+        return (
+          <img
+            key={item.name}
+            className="center"
+            style={{ padding: "4vh" }}
+            src={require(`../assets/${item.name}`)}
+            alt={item.name}
+          />
+        );
+    case ComponentsType.Video:
+        const videoData = {
+            url: (item?.configuration?.get(ConfigurationOptions.URL)) ?? "",
+            withBorder: (item?.configuration?.get(ConfigurationOptions.Border)) ?? false,
+            withBackground: (item?.configuration?.get(ConfigurationOptions.Background)) ?? false,
+            stretched: (item?.configuration?.get(ConfigurationOptions.Stretched)) ?? true,
+            caption: (item?.configuration?.get(ConfigurationOptions.Caption)) ?? "",
+          };
+
+        return (
+            <div>
+            <VideoComponent
+             key={videoData.url}
+             data={videoData} />
+        </div>
+        );
     }
   }
 
@@ -217,21 +249,24 @@ class KYCStep extends React.Component<
   inputChange = (key: string, value: any, isValid: boolean = true) => {
     this.props.handleChange(key, value);
 
-    this.setState((prevState) => {
-      return {
-        ...prevState,   
-        [key]: isValid,
-      };
-    }, () => {
-        let canContinue = true
+    this.setState(
+      (prevState) => {
+        return {
+          ...prevState,
+          [key]: isValid,
+        };
+      },
+      () => {
+        let canContinue = true;
         Object.entries(this.state).forEach(([key, value]) => {
-            if (key !== "canContinue") {
-                canContinue = canContinue && value
-            }
-    });
+          if (key !== "canContinue") {
+            canContinue = canContinue && value;
+          }
+        });
 
-        this.setState({ canContinue: canContinue })
-    });
+        this.setState({ canContinue: canContinue });
+      }
+    );
   };
 
   continue = () => {};

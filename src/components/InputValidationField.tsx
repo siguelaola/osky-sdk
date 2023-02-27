@@ -66,7 +66,6 @@ InputState
         this.validation = (value: string) => {
             const regex = getRegex(this.props.validationData[0], this.props.validationData[1])
             if (regex !== null) {
-                console.log("regex: ", regex)
                 return regex.test(value);
             } else {
                 return true
