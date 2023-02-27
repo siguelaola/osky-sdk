@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/siguelaola/idflow-sdk.git/static/css/main.99f51a25.css",
-    "main.js": "/siguelaola/idflow-sdk.git/static/js/main.3cfdab3f.js",
-    "static/js/787.7e5e6257.chunk.js": "/siguelaola/idflow-sdk.git/static/js/787.7e5e6257.chunk.js",
-    "static/media/rejected.png": "/siguelaola/idflow-sdk.git/static/media/rejected.45cae8926c2eaba669f5.png",
-    "static/media/intro-image.png": "/siguelaola/idflow-sdk.git/static/media/intro-image.169fc059971d8aad4768.png",
-    "static/media/moneygram.svg": "/siguelaola/idflow-sdk.git/static/media/moneygram.a24ad753a1088187df6332483ecf0c12.svg",
-    "static/media/logo.svg": "/siguelaola/idflow-sdk.git/static/media/logo.6ce24c58023cc2f8fd88.svg",
-    "static/media/headerLight.svg": "/siguelaola/idflow-sdk.git/static/media/headerLight.8fd2b17ca486c541e1a5.svg",
-    "static/media/ola_logo.svg": "/siguelaola/idflow-sdk.git/static/media/ola_logo.a7a60787afc4b03d62c3.svg",
-    "index.html": "/siguelaola/idflow-sdk.git/index.html",
-    "static/media/lockIcon.svg": "/siguelaola/idflow-sdk.git/static/media/lockIcon.3f65afe41e01e1edac32e6b23d371cda.svg",
-    "static/media/checkboxSelected.svg": "/siguelaola/idflow-sdk.git/static/media/checkboxSelected.76c1afef05b43026d835.svg",
-    "static/media/chevron-right.svg": "/siguelaola/idflow-sdk.git/static/media/chevron-right.c7c254353fdf514f5a5b8700fe4176e5.svg",
-    "static/media/iconPlus.svg": "/siguelaola/idflow-sdk.git/static/media/iconPlus.14d8ccce5bad044f6221.svg",
-    "static/media/iconPlus1.svg": "/siguelaola/idflow-sdk.git/static/media/iconPlus1.944451c329a9da67840f.svg",
-    "main.99f51a25.css.map": "/siguelaola/idflow-sdk.git/static/css/main.99f51a25.css.map",
-    "main.3cfdab3f.js.map": "/siguelaola/idflow-sdk.git/static/js/main.3cfdab3f.js.map",
-    "787.7e5e6257.chunk.js.map": "/siguelaola/idflow-sdk.git/static/js/787.7e5e6257.chunk.js.map"
+    "main.css": "/idflow-sdk/static/css/main.46414c49.css",
+    "main.js": "/idflow-sdk/static/js/main.b7007e42.js",
+    "static/js/787.7e5e6257.chunk.js": "/idflow-sdk/static/js/787.7e5e6257.chunk.js",
+    "static/media/rejected.png": "/idflow-sdk/static/media/rejected.45cae8926c2eaba669f5.png",
+    "static/media/intro-image.png": "/idflow-sdk/static/media/intro-image.169fc059971d8aad4768.png",
+    "static/media/moneygram.svg": "/idflow-sdk/static/media/moneygram.a24ad753a1088187df6332483ecf0c12.svg",
+    "static/media/logo.svg": "/idflow-sdk/static/media/logo.6ce24c58023cc2f8fd88.svg",
+    "static/media/headerLight.svg": "/idflow-sdk/static/media/headerLight.8fd2b17ca486c541e1a5.svg",
+    "static/media/ola_logo.svg": "/idflow-sdk/static/media/ola_logo.a7a60787afc4b03d62c3.svg",
+    "index.html": "/idflow-sdk/index.html",
+    "static/media/lockIcon.svg": "/idflow-sdk/static/media/lockIcon.3f65afe41e01e1edac32e6b23d371cda.svg",
+    "static/media/checkboxSelected.svg": "/idflow-sdk/static/media/checkboxSelected.76c1afef05b43026d835.svg",
+    "static/media/chevron-right.svg": "/idflow-sdk/static/media/chevron-right.c7c254353fdf514f5a5b8700fe4176e5.svg",
+    "static/media/iconPlus.svg": "/idflow-sdk/static/media/iconPlus.14d8ccce5bad044f6221.svg",
+    "static/media/iconPlus1.svg": "/idflow-sdk/static/media/iconPlus1.944451c329a9da67840f.svg",
+    "main.46414c49.css.map": "/idflow-sdk/static/css/main.46414c49.css.map",
+    "main.b7007e42.js.map": "/idflow-sdk/static/js/main.b7007e42.js.map",
+    "787.7e5e6257.chunk.js.map": "/idflow-sdk/static/js/787.7e5e6257.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.99f51a25.css",
-    "static/js/main.3cfdab3f.js"
+    "static/css/main.46414c49.css",
+    "static/js/main.b7007e42.js"
   ]
 }
