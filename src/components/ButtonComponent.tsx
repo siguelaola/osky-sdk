@@ -1,30 +1,31 @@
 import * as React from "react";
 import { MouseEvent } from "react";
-
-// import "./css/ButtonLightMode";
-import "./css/KYCFlowButton.css";
+import "./css/ButtonComponent.css";
 import ButtonLabel from "./ButtonLabel";
 
-class KYCFlowButton extends React.Component<{
-  className: string;
-  text: string;
+interface ButtonProps {
   enabled: boolean;
   onClick: () => void;
-}> {
+}
+class ButtonComponent extends React.Component<ButtonProps> {
   Continue = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     this.props.onClick();
   };
 
   render() {
+    const title = "Continue";
+
     return (
       <button
-        className={`standard-button ${this.props.className} ${this.props.enabled === false ? "disabled" : ""}`}
+        className={`standard-button ${
+          this.props.enabled === false ? "disabled" : ""
+        }`}
         onClick={this.props.onClick}
       >
         <ButtonLabel
           className="button-label"
-          text={this.props.text}
+          text={title}
           onClick={this.props.onClick}
         />
       </button>
@@ -32,4 +33,4 @@ class KYCFlowButton extends React.Component<{
   }
 }
 
-export default KYCFlowButton;
+export default ButtonComponent;

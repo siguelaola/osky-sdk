@@ -1,49 +1,58 @@
 import React from "react";
-import Line from "./Line";
+import {
+  CheckboxBlockData,
+  EmptyBlockData,
+} from "../interfaces/types";
 import "./css/CheckboxInput.css";
-
-interface ToggleCheckboxProps {
-  title: string;
-  labelPosition: "left" | "right"
-}
+import LineComponent from "./LineComponent";
 
 interface ToggleCheckboxState {
   checked: boolean;
 }
 
+interface CheckboxInputProps {
+    onClick: (id: string, checked: boolean) => void
+}
+
 class CheckboxInput extends React.Component<
-  ToggleCheckboxProps,
+  CheckboxBlockData & CheckboxInputProps,
   ToggleCheckboxState
 > {
   state = {
-    checked: false,
+    checked: this.props.checked,
   };
 
+  componentDidMount() {
+    this.props.onClick(this.props.id, this.state.checked)
+  }
+
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.props.onClick(this.props.id, !this.state.checked)
+
     this.setState((prevState) => ({
       checked: !prevState.checked,
     }));
   };
 
   render() {
+    const data: EmptyBlockData = {};
     return (
-        //    flex-direction: row-reverse; invert order
-        <div style={{ display: "flex", width: "100%", flexDirection: "column" }}>
-        <div style={{ display: "flex", width: "100%", flexDirection: this.props.labelPosition === "left" ? "row" : "row-reverse" }}>
-        <div className="checkbox-title">{this.props.title}</div>
-        <div className="checkbox" style={{ display: "inline-block" }}>
-          <input
-            type="checkbox"
-            checked={this.state.checked}
-            onChange={this.handleChange}
-          />
-          <label />
+      <>
+        <div style={{ display: "flex", width: "100%", flexDirection: "row" }}>
+          <div className="checkbox-title">{this.props.text}</div>
+          <div className="checkbox" style={{ display: "inline-block" }}>
+            <input
+              type="checkbox"
+              checked={this.state.checked}
+              onChange={this.handleChange}
+            />
+            <label />
+          </div>
         </div>
-      </div>
-      <Line color="#F2F2F7" height={1}/>
-      </div>
+        <LineComponent id={this.props.id+"Line"} data={data} onChange={(event) => {}} />
+      </>
     );
   }
 }
 
-export default CheckboxInput;
+export default CheckboxInput

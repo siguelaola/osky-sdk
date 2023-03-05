@@ -19,24 +19,20 @@ export interface ListBlockData {
   items: string[];
 }
 
-export interface ParagraphBlockData {
-  placeholder: string | null;
-  text: string;
-  alignment: "left" | "center" | "right" | "justified";
-}
-
-export interface HeaderBlockData {
-  text: string;
-  level: 1 | 2 | 3 | 4 | 5 | 6;
-  alignment: "left" | "center" | "right" | "justified";
+export interface TextBlockData {
+    text: string;
+    level: 1 | 2 | 3 | 4 | 5 | 6;
+    alignment: CanvasTextAlign;
 }
 
 export interface ChecklistBlockData {
-  items: {
+  items: CheckboxBlockData[];
+}
+
+export interface CheckboxBlockData {
     id: string;
     text: string;
     checked: boolean;
-  }[];
 }
 
 export interface PickerBlockData {
@@ -73,36 +69,106 @@ export interface ClickableOptionBlockData {
   icon: ImageBlockData;
 }
 
+export interface AddressBlockData {
+    addressLine: string;
+    postalCode: string;
+    city: string;
+    country: string;
+}
+
+export interface DateBlockData {
+    date: string;
+    required?: boolean
+    startDate?: string, 
+    endDate?: string
+}
+
+export interface PhoneBlockData {
+    number: string;
+}
+
+export interface ButtonBlockData {
+    title: string
+}
+
+export enum ComponentsBlockType {
+    Image = "image",
+    Textfield = "textfield",
+    SingleChoiceOption = "singleChoiceOption",
+    InputValidation = "inputValidation",
+    UploadFiles = "uploadFiles",
+    Video = "video",
+    List = "list", 
+    Paragraph = "paragraph",
+    Header = "header",
+    Checkbox = "chechbox",
+    Picker = "picker",
+    ToggleOption = "toggleOption", 
+    Input = "input",
+    Button = "button",
+    Address = "address",
+    DatePicker = "date",
+    Phone = "phone",
+    ClickableOption = "clickableOption"
+}
+
 export type BlockType =
   | "image"
   | "video"
-  | "list"
+//   | "list"
   | "paragraph"
   | "header"
+  | "separator"
   | "checklist"
   | "picker"
   | "toggleOption"
   | "input"
-  | "clickableOption"
-  | "button";
+//   | "clickableOption"
+//   | "button"
+  | "address"
+  | "date"
+  | "phone";
 
-export interface Block {
+export type EmptyBlockData = {}
+
+export type BlockDataType = 
+| ImageBlockData
+| VideoBlockData
+| ListBlockData
+| ButtonBlockData
+| TextBlockData
+| ChecklistBlockData
+| PickerBlockData
+| ToggleOptionBlockData
+| InputBlockData
+| ClickableOptionBlockData
+| AddressBlockData
+| DateBlockData
+| PhoneBlockData
+| EmptyBlockData;
+
+export interface BlockData {
+    id: string;
+    type: BlockType;
+    data: BlockDataType
+}
+
+export interface NodeScreen {
+    id: string;
+    type: string;
+    data: {
+      label: string;
+      blocks?: BlockData[];
+    };
+  }
+
+export interface Edge {
   id: string;
-  type: BlockType;
-  data:
-    | ImageBlockData
-    | VideoBlockData
-    | ListBlockData
-    | ParagraphBlockData
-    | HeaderBlockData
-    | ChecklistBlockData
-    | PickerBlockData
-    | ToggleOptionBlockData
-    | InputBlockData
-    | ClickableOptionBlockData;
+  source: string;
+  target: string;
 }
 
 export interface DashboardData {
-    id: string;
-    blocks: Block[]
-}
+    nodes: NodeScreen[];
+    edges: Edge[];
+  }  

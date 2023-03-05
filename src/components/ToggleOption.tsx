@@ -1,64 +1,69 @@
-import { timeStamp } from "console";
-import React, { MouseEventHandler, MouseEvent } from "react";
+import React from "react";
 import LabelField from "./css/LabelField";
+import { ComponentProps } from "./ScreenComponent";
+import { ToggleOptionBlockData } from "../interfaces/types";
 import "./css/ToggleOption.css";
 
-interface IToggleOption {
-  id: string;
-  title: string;
-  options: string[];
-  onChange: (key: string, value: boolean) => void;
-}
-
-// interface
-
 export default class ToggleOption extends React.Component<
-  IToggleOption,
+  ComponentProps,
   {
-    selected: number;
+    selected: string | undefined;
   }
 > {
   state = {
-    selected: 0,
+    selected: undefined,
   };
 
-  componentDidMount() {
-    this.props.onChange(this.props.id, true)
+  config: ToggleOptionBlockData;
+
+  constructor(props: ComponentProps) {
+    super(props);
+
+    this.config = props.data as ToggleOptionBlockData;
+
+    this.state = {
+        selected: undefined
+    };
   }
 
-  onSelect = (e: MouseEvent<HTMLButtonElement>, index: number) => {
-    e.preventDefault();
+  componentDidMount() {
+    this.props.onChange(this.props.id, null, false);
+  }
 
-    this.props.onChange(this.props.id, index === 0)
+  onSelect = (id: string, title: string) => {
+    this.props.onChange(this.props.id, title, true);
 
-    this.setState({
-        selected: index
-    })
+    this.setState({ selected: id });
   };
 
-  renderChoice = (item: string, index: number) => {
-
-    const isSelected = index === this.state.selected
+  renderChoice = (id: string, title: string) => {
+    const isSelected = id === this.state.selected;
 
     return (
-      <button key={index}
+      <button
+        key={id}
         className={`option ${isSelected ? "selected" : ""}`}
-        onClick={(e) => { 
-            this.onSelect(e, index);
-        }}>
-        {item}
+        onClick={() => {
+          this.onSelect(id, title);
+        }}
+      >
+        {title}
       </button>
     );
   };
 
   render() {
-    const { title, options } = this.props;
-
     return (
       <div className="">
-        <LabelField className={""} label={title} key={title} />
+        <LabelField
+          className={""}
+          label={this.config.title}
+          key={this.props.id}
+        />
         <div className="option-choice-container">
-          {options.map((item, index) => this.renderChoice(item, index))}
+          {this.config.items.map((item, index) =>
+            this.renderChoice(item.id, item.title)
+          )}
         </div>
       </div>
     );

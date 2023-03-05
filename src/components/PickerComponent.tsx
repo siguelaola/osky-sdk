@@ -1,26 +1,30 @@
 import React from "react";
+import { PickerBlockData } from "../interfaces/types";
+import { ComponentProps } from "./ScreenComponent";
 import "./css/PickerComponent.css";
-
-interface PickerProps {
-  options: string[];
-  placeholder?: string;
-  onChange: (value: string, isValid: boolean) => void;
-}
 
 interface PickerState {
   open: boolean;
-  value: string
+  value: string;
 }
 
-class PickerComponent extends React.Component<PickerProps, PickerState> {
-  state = {
-    open: false,
-    value: this.props.placeholder || "Select"
-  };
+class PickerComponent extends React.Component<ComponentProps, PickerState> {
+  config: PickerBlockData;
 
-    componentDidMount() {
-        this.props.onChange("", false)
-    }
+  constructor(props: ComponentProps) {
+    super(props);
+
+    this.config = this.props.data as PickerBlockData;
+
+    this.state = {
+      open: false,
+      value: this.config.title,
+    };
+  }
+
+  componentDidMount() {
+    this.props.onChange(this.props.id, "", false);
+  }
 
   toggleOpen = () => {
     this.setState((prevState) => ({
@@ -28,30 +32,30 @@ class PickerComponent extends React.Component<PickerProps, PickerState> {
     }));
   };
 
-  handleOptionClick = (value: string) => {
-    this.props.onChange(value, true);
+  onClick = (value: string) => {
+    this.props.onChange(this.props.id, value, true);
 
-    this.setState({ 
-        open: false,
-        value: value
-     });
+    this.setState({
+      open: false,
+      value: value,
+    });
   };
 
   render() {
     return (
-      <div className="picker">
-        <div className="picker__selected" onClick={this.toggleOpen}>
+      <div className="picker-container">
+        <div className="picker-selected" onClick={this.toggleOpen}>
           {this.state.value}
         </div>
         {this.state.open && (
-          <div className="picker__options">
-            {this.props.options.map((option) => (
+          <div className="picker-items">
+            {this.config?.items.map((option) => (
               <div
-                key={option}
-                className="picker__option"
-                onClick={() => this.handleOptionClick(option)}
+                key={option.id}
+                className="picker-option"
+                onClick={() => this.onClick(option.text)}
               >
-                {option}
+                {option.text}
               </div>
             ))}
           </div>

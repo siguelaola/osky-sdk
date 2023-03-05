@@ -1,194 +1,91 @@
-import React, { Component } from "react";
-import { StepConfiguration, ScreenComponent, StepMap } from "./Interfaces";
-import Onboarding from "./Onboarding";
-import UserDetails from "./UserDetails";
-import WelcomeScreen from "./WelcomeScreen";
+import React from "react";
+import API from "../network/API";
+import ScreenComponent, { ScreenComponentProps } from "./ScreenComponent";
+import { DashboardData, NodeScreen } from "../interfaces/types";
+import DisclosuresView from "./DisclosuresView";
+import logo from "../assets/moneygram.svg";
+import icon from "../assets/chevron-right.svg";
+import "./css/StateMachine.css";
 
-interface StateNode {
-  nextStep: () => void;
-  prevStep: () => void;
-  error: () => void;
-  // configuration: StepConfiguration;
-  render: () => void;
-}
-
-// implements StateNode {
-
-// export class StateMachine {
-
-//     nodes: StateNode[] = []
-//     currentNode?: StateNode = undefined
-
-//     nextStep = () => {
-//         this.currentNode?.nextStep();
-//     }
-
-//     prevStep = () => {
-//         this.currentNode?.prevStep();
-//     }
-
-//     error = () => {
-//         this.currentNode?.error();
-//     }
-
-//     // const configuration: StepConfiguration = {
-//     //     title: "What are your funding sources?",
-//     //     subtitle: "Ola is required by law to collect this information.",
-//     //     items: [
-//     //         { name: "Employment income", type: ComponentsType.Checkbox },
-//     //         { name: "Investments", type: ComponentsType.Checkbox },
-//     //         { name: "Inheritance", type: ComponentsType.Checkbox },
-//     //         { name: "Family", type: ComponentsType.Checkbox },
-//     //     ],
-//     //     button: { button: "Continue", className: "button-light-mode-instance-1" },
-//     // }
-// }
-
-// class AStep implements StateNode {
-
-//     nextStep = () => {
-
-//     }
-
-//     prevStep = () => {
-
-//     }
-
-//     error = () => {
-
-//     }
-
-//     render = () => {
-//         return (
-//             <UserDetails handleChange={} nextStep={this.nextStep} values={} configuration={} />
-//             );
-//         }
-//     }
-
-//     // nextStep: function (): void {
-//     //     // return
-//     // },
-
-//     // prevStep: function (): void {
-//     //     // throw new Error("Function not implemented.");
-//     // },
-//     // error: function (): void {
-//     //     throw new Error("Function not implemented.");
-//     // }
-//     // configuration: undefined
-
-//     // render = () => JSX.Element {
-//     //     return (
-//     //     <UserDetails handleChange={} nextStep={this.nextStep} values={} configuration={} />
-//     //     );
-//     // }
-// }
-
-// class WelcomeScreen extends React.Component<{}> implements StateNode {
-
-//     node: StateNode
-
-//     constructor(node: StateNode) {
-//         super(node);
-//         this.node = node;
-//     }
-
-//     nextStep = (): StateNode => {
-//         // this.currentNode?.nextStep();
-//         console.log('next');
-//         return this.node
-//     }
-
-//     prevStep = () => {
-//         // this.currentNode?.prevStep();
-//     }
-
-//     error = () => {
-//         // this.currentNode?.error();
-//     }
-// }
-
-interface IOnboardingData {
+interface StateMachineData {
   step: number;
-  currentNode: StepConfiguration
-  email: string;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: String;
-  country: string;
-  levelOfEducation: string;
-  past_declined: boolean;
-  past_services: boolean;
-  transfer_services: boolean;
+  currentNode: NodeScreen;
+  information: { [key: string]: any }
 }
 
-
-interface IStepFlow {
-    nextStep?: StepConfiguration
-    onError?: StepConfiguration
-    prevStep?: StepConfiguration
-    condition?: string
+interface StateMachineProps {
+  session: DashboardData;
 }
 
 export default class StateMachine extends React.Component<
-{ flow: Map<StepConfiguration, IStepFlow> },
-// { configuration: StepConfiguration[] },
-  IOnboardingData
+  StateMachineProps,
+  StateMachineData
 > {
-  state: IOnboardingData = {
+  state: StateMachineData = {
     step: 0,
-    // currentNode: {title: "", items: [], screen: ScreenComponent.welcomeScreen },
-    currentNode: this.props.flow.keys().next().value,
-    email: "",
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    country: "",
-    levelOfEducation: "",
-    past_declined: true,
-    past_services: true,
-    transfer_services: true
+    currentNode:
+      this.props.session.nodes.find((node) => node.id === "node-0") ||
+      this.props.session.nodes[this.state.step],
+    information: {}
   };
 
-  //   prevStep = () => {
-  //     const { step } = this.state;
-  //     this.setState({ step: step - 1 });
-  //   };
+  prevStep = () => {
+    const prev_node = this.props.session.edges.find(
+      (edge) => edge.target === this.state.currentNode.id
+    )?.source;
+
+    const node = this.props.session.nodes.find((node) => node.id === prev_node);
+
+    if (node) {
+      this.setState({
+        currentNode: node,
+      });
+    }
+  };
 
   onError = () => {
-    const currentFlow = this.props.flow.get(this.state.currentNode)
+    //TODO: BLOCK ON DASHBOARD - Handle Error Screen
+  };
 
-    if (currentFlow?.onError) {
-        this.setState({ 
-            currentNode: currentFlow.onError
-        });
-    }
-  }
+  nextStep = (data: { [key: string]: any }) => {
+    let canContinue = true;
 
-  nextStep = () => {
-    const currentFlow = this.props.flow.get(this.state.currentNode)
+    //TODO: BLOCK ON DASHBOARD - Check conditions to move to next screen
 
-    let canContinue = true
-
-    if (currentFlow?.condition) {
-        console.log(currentFlow.condition)
-        canContinue = !(this.state.past_declined || this.state.past_services || this.state.transfer_services)
-
-        // if (this.state.)
-
-        // canContinue = Function("return " + currentFlow?.condition)();
-    }
+    this.setState(
+        (prevState) => ({
+            information: { 
+                ...prevState.information,
+                [this.state.currentNode.id]: data
+            }
+    }))
 
     if (canContinue) {
-        if (currentFlow?.nextStep) {
-            this.setState({ 
-                currentNode: currentFlow.nextStep
-            });
+      API.updateSession(data);
+
+      const next_node = this.props.session.edges.find(
+        (edge) => edge.source === this.state.currentNode.id
+      )?.target;
+
+      if (next_node) {
+        const node = this.props.session.nodes.find(
+          (node) => node.id === next_node
+        );
+
+        if (node) {
+          this.setState({
+            currentNode: node,
+          });
+        } else {
+          //HANDLE ERROR - NODE DOES NOT EXIST
+          return;
         }
+      } else {
+        API.finish();
+      }
     } else {
-        this.onError();
+      //TODO: BLOCK ON DASHBOARD - HANDLE ERROR NODE BASED ON CRITERIA
+      this.onError();
     }
   };
 
@@ -205,22 +102,36 @@ export default class StateMachine extends React.Component<
     });
   };
 
-  drawComponent(values: IOnboardingData) {
-    const configuration = this.state.currentNode
-    const DynamicComponent = StepMap[configuration.screen];
-    const props = {
-      configuration: configuration,
-      values: values,
+  drawComponent() {
+    const props: ScreenComponentProps = {
+      node: this.state.currentNode,
+      values: this.state.information[this.state.currentNode.id] ?? {},
       nextStep: this.nextStep,
       handleChange: this.handleChange,
     };
 
-    return <DynamicComponent key={this.state.currentNode.title} {...props} />;
+console.log("passing: ", props.values)
+
+    return <ScreenComponent key={this.state.currentNode.id} {...props} />;
   }
 
   render() {
-    const values = {} as IOnboardingData;
-
-    return this.drawComponent(values);
+    return (
+      <div className="App">
+        <div className="screen-container">
+          <div className="header">
+            <div className="back-btn" onClick={this.prevStep}>
+                <img src={icon} alt="" />
+            </div>
+            <img className="logo" src={logo} alt="" />
+          </div>
+          <div className="components-container">{this.drawComponent()}</div>
+          <DisclosuresView
+            disclosuresURL="https://www.olainvierte.com"
+            message="Your information is secure and will not be shared"
+          />
+        </div>
+      </div>
+    );
   }
 }

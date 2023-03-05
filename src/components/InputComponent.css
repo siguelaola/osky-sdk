@@ -5,7 +5,6 @@
   font-family: Object Sans, Arial;
   font-size: 2vh;
   font-weight: 400;
-  line-height: 30px;
 }
 
 .input-title {
@@ -18,9 +17,6 @@
   padding-left: 2px;
   display: flex;
   font-weight: 700;
-  /* margin-bottom: 1px; */
-
-  width: 35vw;
 }
 
 .input-container {
@@ -28,10 +24,7 @@
   align-items: center;
   margin: 0 0 8px;
   padding: 8px;
-
-  max-width: 20vw;
-  /* background-color: #f9f9f9; */
-
+  margin-right: 10px;
   border: 1px solid #C7C7CC;
   border-radius: 8px;
 }
@@ -41,6 +34,7 @@
   padding: 8px;
   border: none;
   border-radius: 4px;
+  font-size: 2vh;
 }
 
 .input-field:focus {
@@ -60,11 +54,6 @@
 
 .input-error {
   color: red !important;
-
-  /* font-family: Object Sans, Arial;
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 30px; */
 }
 
 .input-invalid {

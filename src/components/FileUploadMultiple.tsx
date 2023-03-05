@@ -6,8 +6,6 @@ class FileUploadMultiple extends React.Component<
   {},
   { files: FileList | null }
 > {
-  //   const [fileList, setFileList] = useState<FileList | null>(null);
-
   state = {
     files: null,
   };

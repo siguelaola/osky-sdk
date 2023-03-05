@@ -29,7 +29,6 @@
   color: white;
 }
 
-
 .App-link {
   color: #61dafb;
 }
@@ -43,16 +42,18 @@
   }
 }
 
+html,
+body,
+#app,
+#app > div,
+:root {
+  height: 100%;
+}
 
-html, body, #app, #app>div, :root {
-    height: 100%
-  }
-
-
-  @media only screen and (min-width: 1024) {
-   body > #root > div {
+@media only screen and (min-width: 1024) {
+  body > #root > div {
     height: 100vh;
-  } 
+  }
 }
 /* 
   [data-reactroot] 

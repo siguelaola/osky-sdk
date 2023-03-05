@@ -7,6 +7,13 @@
   align-items: center;
   padding-top: 1px;
   display: flex;
+
+  /* flex-basis: 20%; */
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-top: 2vh;
 }
 
 .button-label {

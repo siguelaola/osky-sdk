@@ -10,8 +10,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App />
-    {/* <WelcomeScreen /> */}
-    {/* <KYCStep {...address_configuration} /> */}
   </React.StrictMode>
 );
 
