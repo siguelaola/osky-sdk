@@ -1,0 +1,31 @@
+.address {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.address-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1.5rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.column25 {
+    width: 15%;
+    flex-grow: 1;
+    padding-right: 10px;
+}
+.column75 {
+    flex-grow: 4;
+}

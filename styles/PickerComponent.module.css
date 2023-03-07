@@ -1,0 +1,49 @@
+.picker-container {
+  position: relative;
+  padding: 8px;
+  margin-bottom: 22px;
+  border: 1px solid #c7c7cc;
+  border-radius: 8px;
+
+  font-family: Object sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2vh;
+  flex: 1;
+  color: #060d12;
+
+  line-height: 2vh;
+}
+
+.picker-selected {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.picker-items {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  max-height: 250px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1;
+  margin-top: 1px;
+
+  min-width: min-content;
+}
+
+.picker-option {
+  padding: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: min-content;
+}
+
+.picker-option:hover {
+  background-color: #eee;
+  min-width: min-content;
+}

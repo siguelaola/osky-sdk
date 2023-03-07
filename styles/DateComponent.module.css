@@ -1,0 +1,39 @@
+.date-container {
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+.date-container input[type="date"] {
+    position: relative;
+    outline: none;
+    font-family: Object sans-serif;
+    font-weight: 400;
+    line-height: 32px;
+    font-size: 1.5vh;
+    border: 1px solid #c7c7cc;
+    border-radius: 8px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .date-container input[type="date"]::-webkit-datetime-edit-month-field:focus,
+  .date-container input[type="date"]::-webkit-datetime-edit-day-field:focus,
+  .date-container input[type="date"]::-webkit-datetime-edit-year-field:focus {
+    background-color: transparent;
+    color: inherit;
+  }
+  
+  .date-container input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+  }
